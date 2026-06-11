@@ -1,0 +1,758 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>面试准备报告 — ByteDance Data Analyst</title>
+<style>
+  :root {
+    --bg:#0f1115; --fg:#e6e8eb; --muted:#9aa3ad;
+    --accent:#7aa2ff; --good:#5fd07a; --warn:#ffb454; --bad:#ff6b6b;
+    --card:#171a20; --line:#262a31;
+    --purple:#c084fc; --teal:#2dd4bf; --orange:#fb923c;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg:#f5f7fa; --fg:#15181c; --muted:#5b6370;
+            --card:#fff; --line:#e2e8f0; --accent:#3b6ff5; }
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--fg);
+         font:15px/1.65 system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+         max-width:1060px; padding:36px 24px; margin-inline:auto; }
+  h1 { font-size:1.9rem; font-weight:800; letter-spacing:-.5px; margin-bottom:4px; }
+  h2 { font-size:1.25rem; font-weight:700; margin:32px 0 16px; display:flex; align-items:center; gap:10px; }
+  h2::before { content:''; display:block; width:4px; height:22px; border-radius:2px; background:var(--accent); }
+  h3 { font-size:1rem; font-weight:700; margin-bottom:8px; }
+  p  { margin-bottom:8px; }
+  ul { padding-left:20px; margin-bottom:8px; }
+  li { margin-bottom:4px; }
+  a  { color:var(--accent); text-decoration:none; }
+  code { font:13px/1 ui-monospace,Menlo,monospace; background:var(--card);
+         padding:2px 6px; border-radius:4px; border:1px solid var(--line); }
+
+  /* ── Navigation ── */
+  .toc { display:flex; gap:8px; flex-wrap:wrap; margin:20px 0 36px; }
+  .toc a { padding:6px 14px; border-radius:999px; font-size:13px; font-weight:600;
+           background:var(--card); border:1px solid var(--line); color:var(--fg);
+           transition:background .15s; }
+  .toc a:hover { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+  /* ── Cards ── */
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px;
+          padding:20px 24px; margin-bottom:16px; }
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:12px; }
+
+  /* ── Tags / Badges ── */
+  .tag { display:inline-block; padding:2px 10px; border-radius:999px; font-size:12px;
+         font-weight:600; margin:2px; }
+  .tag-sql    { background:#1e3a5f; color:#7aa2ff; }
+  .tag-bi     { background:#1a3a2a; color:#5fd07a; }
+  .tag-ab     { background:#3a2a10; color:#ffb454; }
+  .tag-llm    { background:#2a1a3a; color:#c084fc; }
+  .tag-python { background:#1a2a3a; color:#2dd4bf; }
+  .tag-etl    { background:#3a1a1a; color:#ff6b6b; }
+  .tag-biz    { background:#2a2a1a; color:#fbbf24; }
+
+  /* ── Timeline ── */
+  .timeline { position:relative; padding-left:28px; }
+  .timeline::before { content:''; position:absolute; left:8px; top:8px; bottom:8px;
+                       width:2px; background:var(--line); border-radius:2px; }
+  .tl-item { position:relative; margin-bottom:20px; }
+  .tl-dot  { position:absolute; left:-24px; top:5px; width:12px; height:12px;
+              border-radius:50%; border:2px solid; }
+  .dot-blue   { border-color:var(--accent); background:var(--bg); }
+  .dot-green  { border-color:var(--good);   background:var(--bg); }
+  .dot-purple { border-color:var(--purple); background:var(--bg); }
+  .tl-date { font-size:12px; color:var(--muted); margin-bottom:2px; }
+  .tl-company { font-weight:700; color:var(--accent); }
+
+  /* ── Match matrix ── */
+  .match-row { display:flex; align-items:center; gap:12px; padding:10px 0;
+               border-bottom:1px solid var(--line); }
+  .match-row:last-child { border-bottom:none; }
+  .match-skill { min-width:180px; font-weight:600; font-size:14px; }
+  .match-bar-wrap { flex:1; background:var(--line); border-radius:999px; height:8px; overflow:hidden; }
+  .match-bar { height:100%; border-radius:999px; background:var(--accent); }
+  .match-score { min-width:36px; text-align:right; font-size:13px; color:var(--muted); }
+  .match-note { font-size:13px; color:var(--muted); min-width:180px; }
+
+  /* ── Role cards ── */
+  .role-card { border-radius:10px; padding:16px 18px; margin-bottom:10px;
+               border-left:4px solid; }
+  .role-a { border-color:var(--accent); background:rgba(122,162,255,.07); }
+  .role-b { border-color:var(--good);   background:rgba(95,208,122,.07); }
+  .role-c { border-color:var(--purple); background:rgba(192,132,252,.07); }
+  .role-tag { font-size:11px; font-weight:700; padding:2px 8px; border-radius:999px;
+              display:inline-block; margin-bottom:6px; }
+  .rt-primary { background:var(--accent); color:#fff; }
+  .rt-growth  { background:var(--good);   color:#000; }
+  .rt-stretch { background:var(--purple); color:#fff; }
+
+  /* ── Interview Q&A ── */
+  details { border:1px solid var(--line); border-radius:10px; margin-bottom:10px;
+            background:var(--card); overflow:hidden; }
+  details[open] { border-color:var(--accent); }
+  summary { cursor:pointer; padding:14px 18px; font-weight:600; font-size:15px;
+            display:flex; align-items:center; gap:10px; list-style:none; user-select:none; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:'▸'; margin-left:auto; color:var(--muted); transition:transform .2s; }
+  details[open] summary::after { transform:rotate(90deg); color:var(--accent); }
+  .qa-body { padding:0 18px 18px; }
+  .q-label { display:inline-block; font-size:11px; font-weight:700; padding:2px 8px;
+             border-radius:999px; margin-right:8px; }
+  .q-tech    { background:#1e3a5f; color:#7aa2ff; }
+  .q-behav   { background:#1a3a2a; color:#5fd07a; }
+  .q-biz     { background:#3a2a10; color:#ffb454; }
+  .q-ai      { background:#2a1a3a; color:#c084fc; }
+  .q-fit     { background:#1a2a2a; color:#2dd4bf; }
+  .answer-box { background:var(--bg); border-radius:8px; border-left:3px solid var(--accent);
+                padding:12px 16px; margin-top:10px; font-size:14px; }
+  .answer-label { font-size:11px; font-weight:700; color:var(--accent); margin-bottom:6px; }
+  .key-point { background:rgba(122,162,255,.12); border-radius:4px; padding:2px 6px;
+               font-weight:600; color:var(--accent); }
+
+  /* ── SVG Skill Map ── */
+  .svg-wrap { background:var(--card); border:1px solid var(--line); border-radius:12px;
+              padding:16px; overflow:hidden; }
+
+  /* ── Summary header ── */
+  .header-meta { display:flex; gap:20px; flex-wrap:wrap; margin-top:8px; margin-bottom:24px; }
+  .meta-item { font-size:13px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+  .meta-item strong { color:var(--fg); }
+
+  /* ── Export btn ── */
+  .export-bar { position:sticky; bottom:20px; display:flex; justify-content:flex-end;
+                padding:0 0 8px; pointer-events:none; }
+  .export-btn { pointer-events:all; background:var(--accent); color:#fff; border:none;
+                border-radius:999px; padding:10px 20px; font-size:14px; font-weight:600;
+                cursor:pointer; box-shadow:0 4px 20px rgba(122,162,255,.35);
+                transition:opacity .15s; }
+  .export-btn:hover { opacity:.85; }
+
+  /* ── Section divider ── */
+  .divider { height:1px; background:var(--line); margin:36px 0; }
+
+  .score-pill { display:inline-flex; align-items:center; gap:6px; font-size:13px;
+                background:var(--card); border:1px solid var(--line); border-radius:999px;
+                padding:4px 12px; }
+  .score-dot { width:8px; height:8px; border-radius:50%; }
+</style>
+</head>
+<body>
+
+<h1>面试准备报告</h1>
+<div class="header-meta">
+  <span class="meta-item">候选人 <strong>ByteDance Data Analyst</strong></span>
+  <span class="meta-item">总年限 <strong>~7 年</strong></span>
+  <span class="meta-item">最近职位 <strong>ByteDance AIGC 数据分析</strong></span>
+  <span class="meta-item">生成日期 <strong>2026-06-09</strong></span>
+</div>
+
+<nav class="toc">
+  <a href="#profile">① 背景解读</a>
+  <a href="#skillmap">② 技术图谱</a>
+  <a href="#relevance">③ 与项目的契合度</a>
+  <a href="#roles">④ 可承担职责</a>
+  <a href="#questions">⑤ 面试题库</a>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     MODULE 1: 背景解读
+═══════════════════════════════════════ -->
+<section id="profile">
+<h2>① 候选人背景解读</h2>
+
+<div class="card">
+  <h3>经历总览 — 三段式成长路径</h3>
+  <div class="timeline" style="margin-top:12px;">
+
+    <div class="tl-item">
+      <div class="tl-dot dot-purple"></div>
+      <div class="tl-date">2016.09 — 2019.07 · 普渡大学（美国）</div>
+      <div class="tl-company">Research Assistant · CIVS 可视化与仿真中心</div>
+      <p style="margin-top:6px; color:var(--muted); font-size:14px;">
+        用 C# 搭建工厂安全培训模拟器；用 SQL/SSMS/TSQL 做数据仓库分析；
+        用 Power BI + Tableau + SSRS 出报告；协助 BA 写需求文档，跑 SIT/UAT 测试。
+        <br><strong>关键收获：</strong>数据工程基础 + 报表可视化 + 软件测试流程。
+      </p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-green"></div>
+      <div class="tl-date">2019.08 — 2020.08 · 迈阿密 Adrienne Arsht Center</div>
+      <div class="tl-company">Application Support Specialist</div>
+      <p style="margin-top:6px; color:var(--muted); font-size:14px;">
+        独立维护 SQL 特性 + PowerBI + SSRS 报表；负责 ETL（抽取→转换→加载）；
+        支撑 Tessitura / Dynamics GP 等业务系统；保障数据质量与治理规范。
+        <br><strong>关键收获：</strong>全链路 ETL 经验 + 企业级应用支持 + 数据治理意识。
+      </p>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot dot-blue"></div>
+      <div class="tl-date">2021.03 — 2026.03 · ByteDance / TikTok（5 年）</div>
+      <div class="tl-company">Data Analyst — TikTok 电商搜索 → AIGC 数据分析</div>
+      <p style="margin-top:6px; color:var(--muted); font-size:14px;">
+        前期主做 TikTok 电商搜索的指标体系 + 监控框架（Hive SQL + Power BI）；
+        后期转 AIGC 方向，领 6 人团队评估 ByteDance LLM 代码生成质量（Python/SQL/R，
+        覆盖 GPT-4o / ERNIE / DeepSeek）；设计 A/B 测试；用 Prompt Engineering
+        提升数据质量；最终交付数据驱动的优化报告。
+        <br><strong>关键收获：</strong>超大规模数据处理 + A/B 实验设计 + LLM 评测 + Prompt 工程。
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<div class="card-grid">
+  <div class="card" style="margin-bottom:0;">
+    <h3>核心技术能力（你可能不熟悉的解释）</h3>
+    <ul style="font-size:14px; margin-top:8px;">
+      <li><strong>Hive SQL / Data Lake：</strong>和普通 SQL 一样写查询，但数据量可能是几十亿行，跑在分布式集群上。ByteDance 内部叫"数仓"，是公司级数据中台的核心。</li>
+      <li><strong>Power BI：</strong>微软的商业智能报表工具，拖拖拽拽就能做出带图表的数据看板，不用写前端代码，适合给非技术业务方汇报数据。</li>
+      <li><strong>A/B 测试：</strong>把用户分成两组，一组看旧版、一组看新版，统计哪个版本的购买率/点击率更高。TikTok 做的是亿级用户的 A/B，结论非常可靠。</li>
+      <li><strong>LLM 代码生成评测：</strong>让 AI（GPT-4o、DeepSeek 等）自动写 Python/SQL 代码，然后用数据验证代码质量——正确率、效率、风格——并交叉对比不同模型。</li>
+      <li><strong>Prompt Engineering：</strong>通过精心设计发给 AI 的指令（prompt），让 AI 输出更准确的结果。她用这个提升了数据清洗的质量。</li>
+      <li><strong>ETL：</strong>Extract（抽数据）→ Transform（清洗/转换）→ Load（写入目标库）。数据管道的标准三步，是数据分析师日常工作的基础。</li>
+      <li><strong>SSRS / InfoMaker：</strong>企业级报表工具，主要用于财务/运营等内部定时报表，技术含量中等，但说明她做过传统企业 IT 环境。</li>
+    </ul>
+  </div>
+
+  <div class="card" style="margin-bottom:0;">
+    <h3>项目亮点解读</h3>
+    <div style="margin-bottom:14px;">
+      <div style="font-weight:700; margin-bottom:4px;">📦 商品卡展示逻辑优化（2024.08）</div>
+      <p style="font-size:14px; color:var(--muted);">
+        用 A/B 测试把"销量数字"替换成"口碑指标"（好评数/复购数），结果 TikTok 市场支付渗透率 +0.172%、GMV +190 万、订单量 +1.4 万。<br>
+        <span style="color:var(--accent);">→ 说明她有从业务痛点出发设计实验、量化验证的完整能力。</span>
+      </p>
+    </div>
+    <div>
+      <div style="font-weight:700; margin-bottom:4px;">🎯 高价值用户搜索优化（2023.11）</div>
+      <p style="font-size:14px; color:var(--muted);">
+        针对高净值用户（购买高单价商品）优化搜索排序策略，目标是提升 GMV / MAC / NPS，减少"人货不匹配"情况。用 SQL 做用户分群，输出策略建议给算法团队。<br>
+        <span style="color:var(--accent);">→ 说明她懂"搜索"与"用户分层"逻辑，有业务理解力，不只是跑数据。</span>
+      </p>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     MODULE 1b: 技术图谱
+═══════════════════════════════════════ -->
+<section id="skillmap">
+<h2>② 技术技能图谱</h2>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#262a31"/>
+    </marker>
+  </defs>
+
+  <!-- Center node -->
+  <ellipse cx="450" cy="160" rx="70" ry="36" fill="#1e2a4a" stroke="#7aa2ff" stroke-width="2"/>
+  <text x="450" y="155" text-anchor="middle" fill="#7aa2ff" font-size="13" font-weight="700">Data Analyst</text>
+  <text x="450" y="172" text-anchor="middle" fill="#9aa3ad" font-size="11">候选人核心</text>
+
+  <!-- Node: SQL/数仓 -->
+  <ellipse cx="120" cy="80" rx="80" ry="28" fill="#1e3040" stroke="#2dd4bf" stroke-width="1.5"/>
+  <text x="120" y="75" text-anchor="middle" fill="#2dd4bf" font-size="12" font-weight="700">SQL / 数仓</text>
+  <text x="120" y="91" text-anchor="middle" fill="#9aa3ad" font-size="10">Hive · TSQL · SSMS</text>
+  <line x1="200" y1="100" x2="383" y2="140" stroke="#262a31" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Node: BI可视化 -->
+  <ellipse cx="750" cy="80" rx="80" ry="28" fill="#1a2a20" stroke="#5fd07a" stroke-width="1.5"/>
+  <text x="750" y="75" text-anchor="middle" fill="#5fd07a" font-size="12" font-weight="700">BI 可视化</text>
+  <text x="750" y="91" text-anchor="middle" fill="#9aa3ad" font-size="10">Power BI · Tableau · SSRS</text>
+  <line x1="670" y1="100" x2="517" y2="140" stroke="#262a31" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Node: A/B 实验 -->
+  <ellipse cx="120" cy="240" rx="80" ry="28" fill="#2a2010" stroke="#ffb454" stroke-width="1.5"/>
+  <text x="120" y="235" text-anchor="middle" fill="#ffb454" font-size="12" font-weight="700">A/B 实验设计</text>
+  <text x="120" y="251" text-anchor="middle" fill="#9aa3ad" font-size="10">假设检验 · 指标体系</text>
+  <line x1="200" y1="228" x2="383" y2="180" stroke="#262a31" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Node: LLM/AI -->
+  <ellipse cx="750" cy="240" rx="80" ry="28" fill="#1e1030" stroke="#c084fc" stroke-width="1.5"/>
+  <text x="750" y="235" text-anchor="middle" fill="#c084fc" font-size="12" font-weight="700">LLM 评测</text>
+  <text x="750" y="251" text-anchor="middle" fill="#9aa3ad" font-size="10">Prompt Eng · 模型对比</text>
+  <line x1="670" y1="228" x2="517" y2="180" stroke="#262a31" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Node: ETL -->
+  <ellipse cx="310" cy="280" rx="72" ry="26" fill="#2a1010" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="310" y="275" text-anchor="middle" fill="#ff6b6b" font-size="12" font-weight="700">ETL 管道</text>
+  <text x="310" y="291" text-anchor="middle" fill="#9aa3ad" font-size="10">抽取·转换·加载</text>
+  <line x1="340" y1="254" x2="418" y2="196" stroke="#262a31" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Node: 业务理解 -->
+  <ellipse cx="590" cy="280" rx="72" ry="26" fill="#1a1a10" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="590" y="275" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="700">电商业务理解</text>
+  <text x="590" y="291" text-anchor="middle" fill="#9aa3ad" font-size="10">搜索·GMV·用户分层</text>
+  <line x1="560" y1="254" x2="482" y2="196" stroke="#262a31" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- Skill level labels -->
+  <text x="450" y="310" text-anchor="middle" fill="#5b6370" font-size="11">6 大能力维度 · 彼此协同</text>
+</svg>
+</div>
+
+<div class="card" style="margin-top:12px;">
+  <h3>能力强度评估</h3>
+  <div style="margin-top:12px;">
+    <div class="match-row"><span class="match-skill">SQL / 数仓查询</span><div class="match-bar-wrap"><div class="match-bar" style="width:92%"></div></div><span class="match-score">92%</span><span class="match-note">Hive + TSQL 7年，ByteDance 数据湖</span></div>
+    <div class="match-row"><span class="match-skill">BI 可视化 / 报表</span><div class="match-bar-wrap"><div class="match-bar" style="width:88%"></div></div><span class="match-score">88%</span><span class="match-note">Power BI / Tableau / SSRS 均有实战</span></div>
+    <div class="match-row"><span class="match-skill">A/B 实验 & 指标体系</span><div class="match-bar-wrap"><div class="match-bar" style="width:85%"></div></div><span class="match-score">85%</span><span class="match-note">TikTok 亿级用户实验经验</span></div>
+    <div class="match-row"><span class="match-skill">LLM 评测 / Prompt 工程</span><div class="match-bar-wrap"><div class="match-bar" style="width:78%"></div></div><span class="match-score">78%</span><span class="match-note">AIGC 团队 2 年，评测 GPT/DeepSeek</span></div>
+    <div class="match-row"><span class="match-skill">Python 数据脚本</span><div class="match-bar-wrap"><div class="match-bar" style="width:70%"></div></div><span class="match-score">70%</span><span class="match-note">简历提及 Python/R，深度待面试确认</span></div>
+    <div class="match-row"><span class="match-skill">ETL / 数据管道</span><div class="match-bar-wrap"><div class="match-bar" style="width:75%"></div></div><span class="match-score">75%</span><span class="match-note">Arsht Center 独立负责 ETL</span></div>
+    <div class="match-row"><span class="match-skill">软件工程 / 后端开发</span><div class="match-bar-wrap"><div class="match-bar" style="width:25%; background:var(--warn);"></div></div><span class="match-score">25%</span><span class="match-note">⚠ C# 早期经历，无 TypeScript/NestJS</span></div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     MODULE 2: 与项目的契合度
+═══════════════════════════════════════ -->
+<section id="relevance">
+<h2>③ 与 PrecisePipe 项目的契合度分析</h2>
+
+<div class="card" style="margin-bottom:16px;">
+  <h3 style="margin-bottom:12px;">项目背景速览</h3>
+  <p style="font-size:14px; color:var(--muted);">
+    PrecisePipe 是一个 B2B 工业贸易平台（管材等），核心功能包括：
+    BD 日志记录（make-log）、业务数据分析看板（get-log / weekly report）、
+    AI 自动报价（auto-quoter，LLM 驱动）、报价状态追踪（quote-status / get-summary），
+    后端 NestJS + TypeScript + Airtable，Slack 深度集成，目前约 10+ 模块。
+  </p>
+</div>
+
+<div class="card">
+  <h3>技能吻合度矩阵</h3>
+  <table style="margin-top:12px; font-size:14px;">
+    <thead>
+      <tr style="color:var(--muted); font-size:12px;">
+        <th>项目需求</th>
+        <th>候选人对应能力</th>
+        <th>吻合度</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>BD 行为数据分析 + 打分报告</td>
+        <td>数据挖掘、指标体系设计</td>
+        <td><span class="tag tag-bi">⭐ 高</span></td>
+        <td>TikTok 搜索指标框架经验直接可用</td>
+      </tr>
+      <tr>
+        <td>Get-log 周报 / 可视化看板</td>
+        <td>Power BI、Tableau、BI 报表</td>
+        <td><span class="tag tag-bi">⭐ 高</span></td>
+        <td>可承接现有 web 报告的数据层设计</td>
+      </tr>
+      <tr>
+        <td>Auto-quoter AI 功能优化</td>
+        <td>LLM 评测、Prompt Engineering</td>
+        <td><span class="tag tag-llm">⭐ 高</span></td>
+        <td>评测过 GPT-4o/DeepSeek，方法论完整</td>
+      </tr>
+      <tr>
+        <td>A/B 测试新功能效果</td>
+        <td>A/B 实验设计、假设检验</td>
+        <td><span class="tag tag-ab">⭐ 高</span></td>
+        <td>TikTok 亿级用户实验经验</td>
+      </tr>
+      <tr>
+        <td>Airtable 数据抽取 / 转换</td>
+        <td>ETL、SQL 数据清洗</td>
+        <td><span class="tag tag-etl">中</span></td>
+        <td>Airtable API 需学习，但 ETL 逻辑是强项</td>
+      </tr>
+      <tr>
+        <td>Quote 状态追踪分析</td>
+        <td>业务数据分析、报告产出</td>
+        <td><span class="tag tag-biz">中</span></td>
+        <td>电商到 B2B 贸易有迁移成本</td>
+      </tr>
+      <tr>
+        <td>NestJS 后端功能开发</td>
+        <td>——（无相关经验）</td>
+        <td><span class="tag tag-etl" style="background:#2a1010; color:#ff6b6b;">⚠ 低</span></td>
+        <td>纯数据岗不需要；若要全栈需额外培养</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     MODULE 3: 可承担职责
+═══════════════════════════════════════ -->
+<section id="roles">
+<h2>④ 可承担的工作与职责</h2>
+
+<div class="role-card role-a">
+  <span class="role-tag rt-primary">立即可上手</span>
+  <h3>数据分析 & 业务洞察专员</h3>
+  <ul style="font-size:14px; margin-top:8px; color:var(--muted);">
+    <li>负责 <code>get-log</code> 模块的数据分析，设计 BD 效能指标体系（拜访率、成单率、漏斗分析）</li>
+    <li>搭建 Power BI / Tableau 看板，替代当前纯 Slack 文本汇报</li>
+    <li>为 weekly report 设计统计方法，让数字更有业务说服力</li>
+    <li>用 SQL 从 Airtable 导出数据，做竞品/市场分析报告</li>
+  </ul>
+</div>
+
+<div class="role-card role-b">
+  <span class="role-tag rt-growth">3个月内可承担</span>
+  <h3>AI 功能 QA & Prompt 优化专员</h3>
+  <ul style="font-size:14px; margin-top:8px; color:var(--muted);">
+    <li>为 <code>auto-quoter</code>（LLM 自动报价）设计评测标准和 benchmark，类比她在 ByteDance 做的 LLM 代码生成评测</li>
+    <li>收集真实报价案例作为 gold standard，用量化方法迭代 prompt</li>
+    <li>对 AI 输出质量做 A/B 测试（不同 prompt 策略 vs 用户接受率）</li>
+    <li>监控 AI 功能的关键指标（成功率、响应时间、用户满意度）</li>
+  </ul>
+</div>
+
+<div class="role-card role-c">
+  <span class="role-tag rt-stretch">中期拓展方向</span>
+  <h3>数据平台 & 自动化报告系统</h3>
+  <ul style="font-size:14px; margin-top:8px; color:var(--muted);">
+    <li>将现有 Airtable + Slack 的数据流规范化，设计数据治理方案</li>
+    <li>搭建轻量级数据仓库（如 BigQuery / Supabase），支持更复杂的跨表分析</li>
+    <li>为销售漏斗、报价转化率、客户获取成本等建立 SLA 指标体系</li>
+    <li>配合工程团队设计 get-log 模块的缓存和查询优化策略（数据视角）</li>
+  </ul>
+</div>
+
+<div class="card" style="margin-top:4px; border-color:var(--warn);">
+  <h3 style="color:var(--warn);">⚠ 注意事项 / 潜在风险</h3>
+  <ul style="font-size:14px; margin-top:8px; color:var(--muted);">
+    <li><strong>域迁移：</strong>TikTok 是 C 端电商，PrecisePipe 是 B 端工业贸易。业务逻辑差异较大，需要 1-2 个月熟悉。</li>
+    <li><strong>技术栈差异：</strong>ByteDance 用 Hive/数据湖，这里用 Airtable API + Node.js。SQL 技能迁移没问题，但工具链不同。</li>
+    <li><strong>团队规模：</strong>从 6 人 ByteDance 数据团队到早期创业公司，需要适应"自己写 SQL 也要自己出报告"的全栈数据角色。</li>
+  </ul>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══════════════════════════════════════
+     MODULE 4: 面试题库
+═══════════════════════════════════════ -->
+<section id="questions">
+<h2>⑤ 面试题库（含参考答案）</h2>
+
+<p style="color:var(--muted); font-size:14px; margin-bottom:16px;">
+  共 5 类题型。建议面试顺序：破冰 → 技术 → 行为 → AI → 业务 → 文化匹配。
+  点击展开看参考答案和追问方向。
+</p>
+
+<!-- ── 技术类 ── -->
+<h3 style="margin:20px 0 10px; color:var(--accent);">🔧 技术能力类（验证真实深度）</h3>
+
+<details>
+  <summary>
+    <span class="q-label q-tech">技术</span>
+    你在 TikTok 搭建电商搜索指标体系时，从零开始最难的一步是什么？你是怎么选定核心指标的？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>好的候选人会提到：从业务目标（GMV? 用户体验？）反推，定义<span class="key-point">北极星指标</span>，再拆解为过程指标（搜索渗透率、点击率、转化率）。难点往往是「指标口径对齐」——同一个"搜索量"不同部门定义可能不同，需要拉齐。</p>
+      <p>如果她能说出「我用什么方法判断一个指标是否够好」（比如：可监控、可拆解、能驱动决策），加分。</p>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「如果指标之间出现矛盾（搜索量上升但转化率下降），你怎么处理？」</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-tech">技术</span>
+    描述你在 ByteDance 做过的一个 A/B 测试的完整流程，从假设到结论。
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>她有商品卡展示逻辑优化的具体案例，可以让她展开说。关注点：</p>
+      <ul style="font-size:14px; margin-top:6px;">
+        <li><span class="key-point">实验设计</span>：如何分流（随机/分层）？样本量怎么算？实验周期多长？</li>
+        <li><span class="key-point">指标选择</span>：主指标 vs 护栏指标（防止为了一个指标牺牲另一个）</li>
+        <li><span class="key-point">结论判断</span>：用统计显著性（p-value）还是贝叶斯方法？</li>
+        <li><span class="key-point">上线后</span>：有没有持续监控？有没有出现反弹？</li>
+      </ul>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「实验期间发现数据异常怎么处理？」</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-tech">技术</span>
+    你最常用 SQL 处理哪类问题？能写一段处理漏斗分析的 SQL 思路吗？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>漏斗分析（比如：搜索 → 点击 → 加购 → 下单）标准写法是用 <code>SUM(CASE WHEN step = 'X' THEN 1 ELSE 0 END)</code> 或窗口函数。</p>
+      <p>好的候选人会提到：如何处理用户重复行为（去重）？如何定义时间窗口（7天内完成转化算不算）？</p>
+      <p>如果她用过 <code>WITH</code> CTE / 窗口函数 / Hive 的 <code>LATERAL VIEW</code>，说明 SQL 深度够。</p>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「同一个 SQL 查询，用户量从 100 万增到 10 亿，你怎么优化？」</p>
+  </div>
+</details>
+
+<!-- ── AI / Prompt 类 ── -->
+<h3 style="margin:20px 0 10px; color:var(--purple);">🤖 AI / Prompt 工程类（核心差异点）</h3>
+
+<details>
+  <summary>
+    <span class="q-label q-ai">AI</span>
+    你在评测 LLM 代码生成质量时，具体用了哪些评估标准？怎么判断 GPT-4o 比 DeepSeek 好还是差？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>这是她在 ByteDance AIGC 团队的核心工作，应该很熟。期望听到：</p>
+      <ul style="font-size:14px; margin-top:6px;">
+        <li><span class="key-point">自动化指标</span>：代码执行通过率（Pass@k）、语法正确率、效率（执行时间）</li>
+        <li><span class="key-point">人工评估</span>：可读性、风格一致性、是否符合业务规范（比如命名规范）</li>
+        <li><span class="key-point">业务指标</span>：使用这些代码后，业务效率有没有提升？开发者采用率？</li>
+      </ul>
+      <p>如果她说「我们有 gold standard test set」或「用 human annotation 做评测」，加分。</p>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「如果两个模型在不同场景下各有优劣，你怎么给业务方一个最终建议？」</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-ai">AI</span>
+    你用 Prompt Engineering 提升数据质量，具体是什么场景？Prompt 怎么写的？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>关注她的<span class="key-point">迭代方法论</span>：她是怎么判断一个 prompt 写得好不好的？有没有 A/B 测试 prompt？有没有版本管理 prompt？</p>
+      <p>好的答案示例：「我用 few-shot 示例让模型输出标准化格式，用 chain-of-thought 让模型先分析数据特征再决定是否异常，然后用 20 个标注样本验证准确率从 72% 到 89%。」</p>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「如果同一个 prompt 在不同数据集上效果差异很大，你怎么分析根因？」</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-ai">AI</span>
+    【场景题】我们有个 AI 自动报价功能，给出报价后 30% 的情况客户说"价格不合理"。你会设计什么分析方案来定位问题？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案框架（你可以用这个评分）</div>
+      <ul style="font-size:14px;">
+        <li><strong>第一步：数据收集</strong> — 那 30% 的案例有什么共同特征？（产品类别、客户区域、历史成交价差距？）</li>
+        <li><strong>第二步：根因分类</strong> — 是 AI 输入数据有问题（市场价参考不准）？还是 AI 推理逻辑有问题？还是客户预期管理问题？</li>
+        <li><strong>第三步：实验方案</strong> — 针对每个假设，设计最小验证实验</li>
+        <li><strong>第四步：指标监控</strong> — 修复后，定义「成功」的量化标准</li>
+      </ul>
+      <p style="margin-top:8px;">如果她主动问「30% 是比历史高还是低？」「不合理是指价格太高还是太低？」——加分，说明有业务意识。</p>
+    </div>
+  </div>
+</details>
+
+<!-- ── 行为类 ── -->
+<h3 style="margin:20px 0 10px; color:var(--good);">💬 行为 / STAR 类（判断做事方式）</h3>
+
+<details>
+  <summary>
+    <span class="q-label q-behav">行为</span>
+    说说你在 ByteDance 做过最有成就感的数据项目，以及你在里面的具体贡献。
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">评估维度</div>
+      <ul style="font-size:14px;">
+        <li><span class="key-point">主动性</span>：是她发现问题发起的，还是领导安排的？</li>
+        <li><span class="key-point">端到端</span>：从问题发现到落地有没有全程参与，还是只做了某一段？</li>
+        <li><span class="key-point">量化结果</span>：她的工作对最终 GMV / 指标有多大贡献？她能说清楚数字吗？</li>
+        <li><span class="key-point">跨部门协作</span>：数据分析师通常需要推动工程/算法/产品改变，她怎么做的？</li>
+      </ul>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「如果重来一次，你会做什么不一样的选择？」</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-behav">行为</span>
+    你负责的 AIGC 团队只有 6 个人。作为数据分析师，你和工程师/算法工程师的协作边界是什么？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>这个问题考察她的<span class="key-point">角色认知</span>：她是"给工程师喂需求"，还是"和工程师平等设计实验"？</p>
+      <p>在早期公司，数据分析师往往需要自己写脚本处理数据，不能总等工程师。她有没有这个意识？</p>
+      <p>同时观察：她在大公司有没有"等资源"的惯性？能不能适应小团队自驱的工作方式？</p>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-behav">行为</span>
+    给我讲一个你的数据分析结论最终和业务方直觉相反、你是怎么处理的。
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案要点</div>
+      <p>好的候选人既不会「数据永远对」，也不会「领导永远对」。期望看到：</p>
+      <ul style="font-size:14px; margin-top:6px;">
+        <li>先理解业务方的直觉来源（历史经验？还是某个特例？）</li>
+        <li>检查自己的数据假设是否完整（有没有遗漏某个变量？）</li>
+        <li>用数据重新讲故事，找到双方都能接受的框架</li>
+        <li>最终结果：谁的判断更接近事实？她怎么复盘？</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+<!-- ── 业务理解类 ── -->
+<h3 style="margin:20px 0 10px; color:var(--warn);">📊 业务理解类（考察能否快速适配）</h3>
+
+<details>
+  <summary>
+    <span class="q-label q-biz">业务</span>
+    你在 TikTok 做高价值用户的搜索优化。如果换成 B2B 工业品贸易，"高价值客户"怎么定义？你会用哪些维度？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">评估思路</div>
+      <p>这是一个<span class="key-point">类比迁移</span>的题。B2B 高价值客户通常是：订单金额大、复购频率高、付款周期短、产品品类集中（采购标准化）、决策周期短。</p>
+      <p>如果她能快速提出「我会先看历史成单金额、然后看采购频率、再看 BD 跟进深度（这个正好是 make-log 记录的）」——说明她迁移能力强。</p>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:10px;">追问：「如果 BD 销售的 CRM 数据不完整，你会怎么补全这个分析？」</p>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-biz">业务</span>
+    我们的 BD 团队每天在 Slack 上记录客户拜访日志。你觉得从这些文本数据里，能挖掘什么有价值的分析？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">参考答案框架</div>
+      <ul style="font-size:14px;">
+        <li><strong>活动分析：</strong>每个 BD 的拜访量、拜访时间分布、拜访客户类型占比</li>
+        <li><strong>效能分析：</strong>拜访次数 → 报价次数 → 成单次数的漏斗转化率，找出瓶颈</li>
+        <li><strong>内容分析：</strong>客户拒绝的高频原因是什么？成单客户有什么共同特征？</li>
+        <li><strong>预测分析：</strong>根据历史数据，哪类拜访记录最可能在 30 天内成单？</li>
+      </ul>
+      <p style="margin-top:8px;">如果她主动提到「用 NLP 对日志文本做分类」或「用机器学习预测成单概率」——加分。</p>
+    </div>
+  </div>
+</details>
+
+<!-- ── 文化匹配类 ── -->
+<h3 style="margin:20px 0 10px; color:var(--teal);">🎯 文化匹配 / 动机类</h3>
+
+<details>
+  <summary>
+    <span class="q-label q-fit">匹配</span>
+    你在 ByteDance 是一个成熟大团队，这里是早期创业公司。你期待这两者有什么不同？最担心什么？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">评估维度</div>
+      <p>听她怎么描述「担心」——如果她担心的是「基础设施不完善、数据工具链原始」，这是很真实的，说明她想清楚了。</p>
+      <p>警惕信号：如果她说「没什么担心的」（可能没想清楚）或者「担心工资少」（重点放在待遇而非成长）。</p>
+      <p>理想信号：「我希望能更直接看到自己分析的业务影响，大公司做一个项目影响可能要等 6 个月，这里也许 2 周就能看到。」</p>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>
+    <span class="q-label q-fit">匹配</span>
+    如果给你 3 个月，你觉得你能为我们的产品做出什么具体的贡献？
+  </summary>
+  <div class="qa-body">
+    <div class="answer-box">
+      <div class="answer-label">评估维度</div>
+      <p>这是反向测试：她有没有做过功课了解我们的产品？她给出的答案是通用的（「我会建立指标体系」）还是具体的？</p>
+      <p>理想回答：「如果你们的 BD 日志已经积累了半年数据，我可以先做一个 BD 效能报告，找出成单率最高的拜访模式；同时评估 AI 报价的准确率，给出改进建议。」</p>
+    </div>
+  </div>
+</details>
+
+</section>
+
+<div class="divider"></div>
+
+<div class="card" style="border-color:var(--accent);">
+  <h3>面试建议 & 红线提示</h3>
+  <div class="card-grid" style="margin-top:12px;">
+    <div>
+      <div style="color:var(--good); font-weight:700; margin-bottom:8px;">✅ 绿灯信号</div>
+      <ul style="font-size:14px; color:var(--muted);">
+        <li>能讲清楚商品卡 A/B 的完整数字</li>
+        <li>能讲 Prompt 迭代的量化方法</li>
+        <li>主动问业务问题（不只答技术）</li>
+        <li>承认域迁移有学习成本</li>
+        <li>对小团队表现出真实兴奋感</li>
+      </ul>
+    </div>
+    <div>
+      <div style="color:var(--bad); font-weight:700; margin-bottom:8px;">🚩 红旗信号</div>
+      <ul style="font-size:14px; color:var(--muted);">
+        <li>只说"我们团队做了"，没有自己的具体贡献</li>
+        <li>SQL 只会简单 SELECT，没有分析思维</li>
+        <li>对 B2B 业务完全没兴趣/不愿了解</li>
+        <li>要求有独立 BI 工具团队支持才能工作</li>
+        <li>无法接受没有规范数据管道的环境</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Export button -->
+<div class="export-bar">
+  <button class="export-btn" onclick="copyReport()">📋 复制摘要</button>
+</div>
+
+<div id="summary-text" style="display:none">
+## 面试候选人摘要 — ByteDance Data Analyst
+
+**背景：** 7年经验，Purdue研究助理→Miami企业IT→ByteDance TikTok（电商搜索+AIGC），5年字节。
+
+**核心技能：** SQL/Hive（92%）、Power BI可视化（88%）、A/B实验设计（85%）、LLM评测/Prompt工程（78%）
+
+**与项目契合点：**
+- 可立即承担：get-log数据分析、BD效能看板设计
+- 3个月后：auto-quoter AI功能评测与Prompt优化
+- 中期：数据治理与自动化报告体系
+
+**风险：** C端→B2B迁移成本，无TypeScript/NestJS后端经验，工具链需适应（Airtable vs Hive）
+
+**关键面试问题：** A/B测试完整流程（商品卡案例）、LLM评测标准、Prompt迭代方法论、域迁移意愿
+</div>
+
+<script>
+function copyReport() {
+  const text = document.getElementById('summary-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.export-btn');
+    btn.textContent = '✅ 已复制';
+    setTimeout(() => { btn.textContent = '📋 复制摘要'; }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
