@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国 EMT 导管持证供应商调研 2026</title>
+<style>
+:root {
+  --bg:#0f1115; --fg:#e6e8eb; --muted:#9aa3ad;
+  --accent:#7aa2ff; --good:#5fd07a; --warn:#ffb454; --bad:#ff6b6b;
+  --card:#171a20; --line:#262a31; --hover:#1e2229;
+  --ul-color:#3b9eff; --etl-color:#a78bfa; --ce-color:#34d399;
+  --cul-color:#60a5fa; --iso-color:#fbbf24; --bs-color:#f472b6;
+}
+@media (prefers-color-scheme:light) {
+  :root { --bg:#f4f6f9; --fg:#15181c; --muted:#5b6370;
+          --card:#fff; --line:#e0e4ea; --hover:#f0f3f7; }
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--fg);font:14px/1.6 system-ui,-apple-system,sans-serif;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* ── Header ── */
+.hdr{background:linear-gradient(135deg,#0d1b2e 0%,#0f1115 100%);border-bottom:1px solid var(--line);padding:32px 24px 24px;text-align:center;}
+.hdr h1{font-size:22px;font-weight:700;letter-spacing:.5px;color:#e6e8eb;}
+.hdr p{color:var(--muted);font-size:13px;margin-top:6px;}
+.stats{display:flex;justify-content:center;gap:28px;margin-top:20px;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat .n{font-size:28px;font-weight:700;color:var(--accent);}
+.stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+
+/* ── Filter Bar ── */
+.filter-bar{display:flex;gap:8px;padding:16px 24px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);background:var(--card);}
+.filter-bar span{font-size:12px;color:var(--muted);margin-right:4px;}
+.filter-btn{background:var(--card);border:1px solid var(--line);color:var(--muted);padding:5px 14px;border-radius:999px;font-size:12px;cursor:pointer;transition:all .15s;}
+.filter-btn:hover,.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+.export-btn{margin-left:auto;background:transparent;border:1px solid var(--line);color:var(--muted);padding:5px 14px;border-radius:6px;font-size:12px;cursor:pointer;transition:all .15s;}
+.export-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ── Grid ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding:20px 24px 40px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;cursor:pointer;transition:all .15s;position:relative;overflow:hidden;}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.25);}
+.card::before{content:'▸ 查看详情';position:absolute;bottom:12px;right:14px;font-size:11px;color:var(--accent);opacity:0;transition:opacity .15s;}
+.card:hover::before{opacity:1;}
+.card.hidden{display:none;}
+
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:12px;}
+.company-name{font-size:15px;font-weight:700;line-height:1.3;}
+.company-en{font-size:11px;color:var(--muted);margin-top:2px;}
+.brand-tag{background:var(--line);color:var(--fg);border-radius:6px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0;}
+
+.meta-row{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);margin-bottom:10px;}
+.meta-row svg{opacity:.5;}
+
+.cert-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.3px;}
+.badge-ul{background:rgba(59,158,255,.15);color:var(--ul-color);border:1px solid rgba(59,158,255,.3);}
+.badge-etl{background:rgba(167,139,250,.15);color:var(--etl-color);border:1px solid rgba(167,139,250,.3);}
+.badge-cul{background:rgba(96,165,250,.15);color:var(--cul-color);border:1px solid rgba(96,165,250,.3);}
+.badge-ce{background:rgba(52,211,153,.15);color:var(--ce-color);border:1px solid rgba(52,211,153,.3);}
+.badge-iso{background:rgba(251,191,36,.15);color:var(--iso-color);border:1px solid rgba(251,191,36,.3);}
+.badge-bs{background:rgba(244,114,182,.15);color:var(--bs-color);border:1px solid rgba(244,114,182,.3);}
+.badge-warn{background:rgba(255,107,107,.15);color:var(--bad);border:1px solid rgba(255,107,107,.3);}
+
+.product-chips{display:flex;flex-wrap:wrap;gap:4px;}
+.chip{background:var(--line);color:var(--muted);font-size:11px;padding:2px 8px;border-radius:4px;}
+.chip.highlight{background:rgba(122,162,255,.1);color:var(--accent);}
+
+/* ── Scope Strip ── */
+.scope-strip{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
+.scope-both{color:var(--good);}
+.scope-pipe{color:var(--warn);}
+.scope-fittings{color:var(--muted);}
+
+/* ── Modal ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .2s;}
+.overlay.open{opacity:1;pointer-events:all;}
+.modal{background:var(--card);border:1px solid var(--line);border-radius:16px;max-width:680px;width:100%;padding:28px;position:relative;transform:translateY(16px);transition:transform .2s;}
+.overlay.open .modal{transform:translateY(0);}
+.modal-close{position:absolute;top:16px;right:16px;background:var(--line);border:none;color:var(--muted);width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.modal-close:hover{background:var(--bad);color:#fff;}
+.modal h2{font-size:18px;font-weight:700;margin-bottom:4px;}
+.modal .m-en{font-size:12px;color:var(--muted);margin-bottom:16px;}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px;}
+@media(max-width:500px){.modal-grid{grid-template-columns:1fr;}}
+.m-section{margin-bottom:18px;}
+.m-section h3{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);font-weight:700;margin-bottom:8px;border-bottom:1px solid var(--line);padding-bottom:4px;}
+.cert-table{width:100%;border-collapse:collapse;}
+.cert-table td{padding:6px 8px;font-size:12px;border-bottom:1px solid var(--line);}
+.cert-table td:first-child{font-weight:700;color:var(--accent);width:36%;}
+.m-links{display:flex;flex-wrap:wrap;gap:8px;}
+.m-link{background:var(--line);border:1px solid transparent;border-radius:6px;padding:5px 12px;font-size:12px;color:var(--fg);display:flex;align-items:center;gap:4px;transition:all .15s;}
+.m-link:hover{border-color:var(--accent);color:var(--accent);text-decoration:none;}
+.note-box{background:rgba(122,162,255,.06);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;font-size:12px;color:var(--muted);line-height:1.6;}
+.buyers{display:flex;flex-wrap:wrap;gap:5px;}
+.buyer-chip{background:rgba(95,208,122,.1);color:var(--good);border:1px solid rgba(95,208,122,.2);border-radius:4px;padding:2px 8px;font-size:11px;}
+
+/* ── Source footer ── */
+.footer{text-align:center;padding:20px;font-size:11px;color:var(--muted);border-top:1px solid var(--line);}
+
+/* ── Empty state ── */
+.empty{text-align:center;padding:60px 24px;color:var(--muted);display:none;}
+.empty.show{display:block;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>🏭 中国 EMT 导管持证供应商</h1>
+  <p>调研时间：2026-06-10 / 11 &nbsp;·&nbsp; 2026-06-15 整合 PDF &nbsp;·&nbsp; 数据来源：UL ProspectorIQ（含加拿大认证直查 PDF）· ImportYeti · 官方网站</p>
+  <div class="stats">
+    <div class="stat"><div class="n">24</div><div class="l">已知持证厂商</div></div>
+    <div class="stat"><div class="n">9</div><div class="l">省市分布</div></div>
+    <div class="stat"><div class="n">22</div><div class="l">持加拿大认证</div></div>
+    <div class="stat"><div class="n">13</div><div class="l">同时生产管体+管件</div></div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <span>筛选：</span>
+  <button class="filter-btn active" data-filter="all">全部</button>
+  <button class="filter-btn" data-filter="pipe">管体为主</button>
+  <button class="filter-btn" data-filter="fittings">管件为主</button>
+  <button class="filter-btn" data-filter="both">管体+管件</button>
+  <button class="filter-btn" data-filter="ul">UL 认证</button>
+  <button class="filter-btn" data-filter="etl">ETL 认证</button>
+  <button class="filter-btn" data-filter="cul">cUL（加拿大）</button>
+  <button class="filter-btn" data-filter="canada">🍁 加拿大认证</button>
+  <button class="export-btn" id="copyBtn">📋 复制摘要</button>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty">暂无符合条件的供应商</div>
+
+<!-- Modal -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal(null,true)">✕</button>
+    <div id="mbody"></div>
+  </div>
+</div>
+
+<div class="footer">
+  数据截至 2026-06-15（含 UL ProspectorIQ PDF 加拿大认证直查，51条）&nbsp;|&nbsp; 证书状态以 <a href="https://iq2.ulprospector.com" target="_blank">UL ProspectorIQ</a> 实时查询为准
+  &nbsp;|&nbsp; 进口记录来源 <a href="https://www.importyeti.com" target="_blank">ImportYeti</a>
+  &nbsp;|&nbsp; ⚠️ Weifang East（E308289）已召回批次禁止使用，现行合规证号 E340594
+</div>
+
+<script>
+const D = [
+  /* ══ 1. 慈溪成荷管业 ══ */
+  {
+    id:'ccpi', cn:'慈溪成荷管业', en:'Cixi Chenghe Pipe Industry Co., Ltd.',
+    brand:'CCPI', loc:'慈溪，浙江', founded:'1993',
+    certs:['ul','cul','canada','iso'],
+    certBadges:['FJMX E483260','FJMX7 CA','UL E341799','cUL','ISO 9001'],
+    certRows:[
+      ['FJMX.E483260','UL','EMT Conduit (UL 797 / ANSI C80.3) — 管体，美国 — 2016年获证'],
+      ['FJMX7.E483260','cUL','EMT Conduit (CSA C22.2 No.83.1) — 管体，加拿大'],
+      ['E341799','UL/cUL','Rigid Ferrous Metal Conduit (US + Canada)'],
+      ['E483259','UL/cUL','Rigid Nonferrous Metallic Conduit (US + Canada)'],
+      ['E501987','UL/cUL','Conduit Fittings + Metallic Outlet Boxes (US + Canada)'],
+      ['E509375','UL/cUL','Conduit Fittings (US + Canada)'],
+      ['E466694','UL','PVC Coated Rigid Conduit'],
+      ['E516500','UL/cUL','Conduit & Cable Hardware (US + Canada)'],
+      ['E515582','UL','IMC (Intermediate Metal Conduit)'],
+    ],
+    products:['EMT Conduit','IMC','Rigid Steel Conduit','Rigid Nonferrous','PVC Coated Conduit','Conduit Fittings','Metallic Outlet Boxes','Conduit & Cable Hardware'],
+    scope:'both',
+    links:[
+      {label:'Alibaba 店铺',url:'https://ccpi.en.alibaba.com/'},
+      {label:'Made-in-China',url:'https://www.made-in-china.com/showroom/chenghepipes/'},
+      {label:'ImportYeti',url:'https://www.importyeti.com/supplier/cixi-chenghe-pipe-industrial'},
+    ],
+    buyers:['Nesco (Canada, 101票)'],
+    note:'PDF直查确认 FJMX.E483260 + FJMX7.E483260 美国+加拿大双认证；1993年建厂，证书最全（8张UL文件号），已知向加拿大 Nesco 连续出货101票，北美市场存在感最强的中国管体供应商。',
+  },
+  /* ══ 2. 杭州EVT电气 ══ */
+  {
+    id:'evt', cn:'杭州EVT电气', en:'Hangzhou EVT Electrical Co., Ltd.',
+    brand:'EVT', loc:'杭州，浙江', founded:'~2015',
+    certs:['ul','cul','canada','ce','iso'],
+    certBadges:['FJMX E476073','FJMX7 CA','CE','ISO 9001:2015'],
+    certRows:[
+      ['FJMX.E476073','UL','EMT Conduit + Elbows + IMC + Couplings + Weatherproof Boxes + Conduit Bodies + Steel Boxes — 美国'],
+      ['FJMX7.E476073','cUL','EMT Conduit (CSA C22.2 No.83.1) — 加拿大'],
+    ],
+    products:['EMT Conduit','IMC','Rigid Steel Conduit','BS Conduit (BS31/BS4568)','Conduit Fittings','Weatherproof Box','Steel Box','Strut Channel'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.evt-electrical.com/'},
+      {label:'Made-in-China',url:'https://emtsupplier.en.made-in-china.com/'},
+    ],
+    buyers:[],
+    note:'PDF直查确认 FJMX.E476073 + FJMX7.E476073 美国+加拿大双认证；一张UL文件号覆盖EMT管体+全系列管件+箱体。',
+  },
+  /* ══ 3. 合肥爱力曼电气 ══ */
+  {
+    id:'elecman', cn:'合肥爱力曼电气', en:'Hefei Elecman Electrical Co., Ltd.',
+    brand:'ELECMAN', loc:'合肥，安徽', founded:'—',
+    certs:['ul','canada'],
+    certBadges:['FJMX E491791','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E491791','UL','EMT Electrical Metallic Tubing (UL797 / ANSI C80.3) — 美国'],
+      ['FJMX7.E491791','cUL','EMT Electrical Metallic Tubing (CSA C22.2 No.83.1) — 加拿大'],
+      ['UL1242','UL','IMC Intermediate Metal Conduit'],
+      ['UL6','UL','RSC Rigid Steel Conduit'],
+    ],
+    products:['EMT Conduit','IMC Conduit','RSC Rigid Steel Conduit'],
+    scope:'pipe',
+    links:[
+      {label:'官方网站',url:'https://www.elecmanelectric.com/'},
+      {label:'Made-in-China',url:'https://china-elecman.en.made-in-china.com/'},
+    ],
+    buyers:[],
+    note:'PDF直查确认 FJMX.E491791 + FJMX7.E491791 美国+加拿大双认证；纯管体制造商，专攻EMT/IMC/RSC三大美标管型。',
+  },
+  /* ══ 4. 杭州时代 ALEX（ETL认证） ══ */
+  {
+    id:'alex', cn:'杭州时代进出口（ALEX）', en:'Hangzhou Times Import & Export Co., Ltd.',
+    brand:'ALEX', loc:'杭州，浙江', founded:'2004',
+    certs:['etl','ce','iso'],
+    certBadges:['ETL (Intertek)','CE','ISO 9001'],
+    certRows:[
+      ['ETL','Intertek ETL','EMT Conduit + Elbows — 中国首家获ETL认证厂商'],
+    ],
+    products:['EMT Conduit','IMC Conduit','Rigid Steel Conduit','Steel Flexible Conduit','Liquid-Tight Conduit','Steel Box','Strut Channel'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.alexcity.biz/'},
+      {label:'证书页面',url:'https://alexcity.biz/certificates/'},
+      {label:'ETL公告',url:'https://alexcity.biz/certificates/etl-certification-quality-emt-conduits.html'},
+    ],
+    buyers:[],
+    note:'中国第一家拿到Intertek ETL认证的EMT厂商（ETL与UL在北美等效）；未见于UL ProspectorIQ PDF直查，证书体系为ETL而非UL/cUL。',
+  },
+  /* ══ 5. 杭州Topele ══ */
+  {
+    id:'topele', cn:'杭州Topele进出口', en:'Hangzhou Topele Import & Export Co., Ltd.',
+    brand:'TOPELE', loc:'杭州（萧山），浙江', founded:'2008',
+    certs:['ul','cul','ce','iso'],
+    certBadges:['FJMX E506414','8份UL证书','cUL','BSI','CSA'],
+    certRows:[
+      ['FJMX.E506414','UL','EMT Conduit — 管体，美国（PDF直查确认）'],
+      ['多份UL/cUL','UL/cUL','EMT, IMC, Rigid, BS Conduit, Fittings, Boxes（多美/加文件号）'],
+      ['BSI','BSI','BS31 / BS4568 Conduit（英国）'],
+      ['CSA','CSA','加拿大标准认证（官网声称，FJMX7未在PDF出现）'],
+    ],
+    products:['EMT Conduit','IMC Conduit','Rigid Conduit','BS4568/BS31 Conduit','Conduit Fittings','Electrical Boxes','Strut Channel & Fittings','Flexible Conduit'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.topele.com/'},
+      {label:'Made-in-China',url:'https://topele.en.made-in-china.com/'},
+    ],
+    buyers:['USA','UK','Singapore','Mexico','Dubai','Philippines'],
+    note:'持8份UL证书+BSI+CSA+IEC，出口超15国；PDF直查仅出现 FJMX.E506414（美国），FJMX7加拿大EMT认证未在此次PDF中出现，官网声称有CSA认证，建议独立核实。',
+  },
+  /* ══ 6. 龙旺工业 ══ */
+  {
+    id:'lonwow', cn:'龙旺工业', en:'Lonwow Industry Co., Ltd.',
+    brand:'LONWOW', loc:'江阴，江苏', founded:'2016',
+    certs:['ul','canada'],
+    certBadges:['FJMX E489656','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E489656','UL','EMT Conduit (UL 797) — 美国'],
+      ['FJMX7.E489656','cUL','EMT Conduit (CSA C22.2) — 加拿大'],
+      ['UL1242','UL','IMC Intermediate Metal Conduit'],
+    ],
+    products:['EMT Conduit','IMC Conduit','Rigid Metal Conduit','Conduit Fittings','Strut Channel (C Channel)'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.lonwow.com/'},
+      {label:'Made-in-China',url:'https://lonwow.en.made-in-china.com/'},
+    ],
+    buyers:[],
+    note:'2016年建厂，2017年获EMT/IMC UL认证；PDF直查确认 FJMX.E489656 + FJMX7.E489656 美国+加拿大双认证；江苏江阴生产基地。',
+  },
+  /* ══ 7. 浙江艾威电气 ══ */
+  {
+    id:'axwill', cn:'浙江艾威电气', en:'Zhejiang Axwill Electrical Co., Ltd.',
+    brand:'AXWILL', loc:'浙江', founded:'2007',
+    certs:['ul','canada','ce'],
+    certBadges:['FJMX E469551','FJMX7 CA','CE'],
+    certRows:[
+      ['FJMX.E469551','UL','EMT Conduit — 美国'],
+      ['FJMX7.E469551','cUL','EMT Conduit — 加拿大'],
+      ['UL','UL','IMC / Rigid / Liquid-Tight Flexible Conduit'],
+      ['CE','CE','BS Conduit系列'],
+    ],
+    products:['EMT Conduit','IMC Conduit','Rigid Conduit','BS Conduit','Liquid-Tight Flexible Conduit','Conduit Fittings'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.axwillcn.com/'},
+      {label:'Made-in-China',url:'https://axwillemtconduit.en.made-in-china.com/'},
+    ],
+    buyers:['Middle East','Americas','Southeast Asia'],
+    note:'2007年成立；PDF直查确认 FJMX.E469551 + FJMX7.E469551 美国+加拿大双认证；年产钢管6000吨/管件4000吨，覆盖中东、美洲、东南亚。',
+  },
+  /* ══ 8. 长沙艾威尔 / RIFI ══ */
+  {
+    id:'rifi', cn:'长沙艾威尔进出口', en:'Changsha Elewell Import & Export Co., Ltd.',
+    brand:'RIFI', loc:'长沙，湖南', founded:'—',
+    certs:['ul','canada','ce'],
+    certBadges:['FJMX E540045','FJMX7 CA','BS','IEC'],
+    certRows:[
+      ['FJMX.E540045','UL','EMT Conduit (HDG/Pre-Galvanized) — 美国'],
+      ['FJMX7.E540045','cUL','EMT Conduit — 加拿大'],
+      ['BS','BSI','BS31/BS4568 Conduit'],
+      ['IEC 61386','IEC','欧标导管'],
+    ],
+    products:['EMT Conduit','Steel Flexible Conduit','Strut Channel','Cable Tray','Cable Ties','Conduit Fittings'],
+    scope:'both',
+    links:[
+      {label:'Made-in-China',url:'https://emtconduitpipe.en.made-in-china.com/'},
+      {label:'官方网站',url:'https://www.emtconduitpipe.com/'},
+    ],
+    buyers:[],
+    note:'出口品牌RIFI；PDF直查确认 FJMX.E540045 + FJMX7.E540045 美国+加拿大双认证；UL/BS/IEC三标准，产品线完整。',
+  },
+  /* ══ 9. 慈溪亚曼尼（管件） ══ */
+  {
+    id:'yamani', cn:'慈溪亚曼尼电气', en:'Cixi Yamani Electrical Co., Ltd.',
+    brand:'—', loc:'慈溪，浙江', founded:'—',
+    certs:['ul','cul','canada'],
+    certBadges:['UL E477234','cUL E477234','UL E480497'],
+    certRows:[
+      ['DWTT.E477234','UL','Conduit Fittings — 美国'],
+      ['DWTT7.E477234','cUL','Conduit Fittings — 加拿大'],
+      ['KDER.E480497','UL','Grounding & Bonding Equipment — 美国'],
+      ['KDER7.E480497','cUL','Grounding & Bonding Equipment — 加拿大'],
+    ],
+    products:['Conduit Fittings','Grounding & Bonding Equipment'],
+    scope:'fittings',
+    links:[
+      {label:'UL ProspectorIQ E477234',url:'https://iq2.ulprospector.com/en/profile/25934/dwtt.e477234'},
+      {label:'UL ProspectorIQ E480497',url:'https://iq2.ulprospector.com/en/profile/61595/kder.e480497'},
+    ],
+    buyers:[],
+    note:'管件专业厂，美国+加拿大双认证；UL ProspectorIQ数据库确认；慈溪导管集群成员。',
+  },
+  /* ══ 10. 宁波三菱电子（管件） ══ */
+  {
+    id:'sanling', cn:'宁波三菱电子', en:'Ningbo Sanling Electronics Co., Ltd.',
+    brand:'—', loc:'宁波，浙江', founded:'—',
+    certs:['ul','cul','canada'],
+    certBadges:['UL E222319','cUL E222319','UL E469469'],
+    certRows:[
+      ['DWTT.E222319','UL','Conduit Fittings — 美国'],
+      ['DWTT7.E222319','cUL','Conduit Fittings — 加拿大'],
+      ['KDER.E469469','UL','Grounding & Bonding Equipment'],
+    ],
+    products:['Conduit Fittings','Grounding & Bonding Equipment'],
+    scope:'fittings',
+    links:[
+      {label:'UL ProspectorIQ E222319',url:'https://iq2.ulprospector.com/en/profile/25853/dwtt.e222319'},
+    ],
+    buyers:[],
+    note:'管件专业厂，美国+加拿大双认证；UL ProspectorIQ数据库确认。',
+  },
+  /* ══ 11. 常州银雷（EMT管件） ══ */
+  {
+    id:'yinlei', cn:'常州银雷电子', en:'Changzhou Yinlei Electronic Co., Ltd.',
+    brand:'—', loc:'常州，江苏', founded:'—',
+    certs:['ul','cul','canada'],
+    certBadges:['FKAV E315281','FKAV7 CA','DWTT E315256'],
+    certRows:[
+      ['FKAV.E315281','UL','EMT Tubing Fittings（专用管件）— 美国'],
+      ['FKAV7.E315281','cUL','EMT Tubing Fittings — 加拿大'],
+      ['DWTT.E315256','UL','Conduit Fittings（历史证书 Historical）'],
+    ],
+    products:['EMT Tubing Fittings','Conduit Fittings'],
+    scope:'fittings',
+    links:[
+      {label:'UL ProspectorIQ FKAV E315281',url:'https://iq2.ulprospector.com/en/profile/25877/fkav.e315281'},
+      {label:'UL ProspectorIQ DWTT E315256',url:'https://iq2.ulprospector.com/en/profile/25877/dwtt.e315256'},
+    ],
+    buyers:[],
+    note:'PDF直查更新：持 FKAV.E315281 + FKAV7.E315281 美国+加拿大双认证 EMT 专用管件；DWTT.E315256 为历史类别证书。',
+  },
+  /* ══ 12. Hangzhou Prostar（管体+管件） ══ */
+  {
+    id:'prostar', cn:'杭州博力进出口', en:'Hangzhou Prostar Enterprises Ltd.',
+    brand:'PROSTAR', loc:'杭州，浙江', founded:'—',
+    certs:['ul','canada'],
+    certBadges:['FJMX E468420','FJMX7 CA','FKAV E358076','FKAV7 CA'],
+    certRows:[
+      ['FJMX.E468420','UL','EMT Conduit — 管体，美国'],
+      ['FJMX7.E468420','cUL','EMT Conduit — 管体，加拿大'],
+      ['FKAV.E358076','UL','EMT Tubing Fittings — 管件，美国'],
+      ['FKAV7.E358076','cUL','EMT Tubing Fittings — 管件，加拿大'],
+    ],
+    products:['EMT Conduit','IMC','RMC','BS Conduit','EMT Fittings','Strut Channel'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.prostar-ele.net/'},
+      {label:'Made-in-China',url:'https://prostarchannel.en.made-in-china.com/'},
+      {label:'Alibaba',url:'https://prostar-ele.en.alibaba.com/'},
+    ],
+    buyers:[],
+    note:'PDF直查确认同时持 EMT 管体（FJMX.E468420）+ 管件（FKAV.E358076）美国+加拿大四项认证，是本次清单中认证最完整的单一厂商之一；地址：杭州建国北路639号。',
+  },
+  /* ══ 13. 杭州友亚电气 ══ */
+  {
+    id:'yoya', cn:'杭州友亚电气', en:'Hangzhou Yoya Electrical Co., Ltd.',
+    brand:'YOYA', loc:'杭州萧山，浙江', founded:'1992',
+    certs:['ul','canada'],
+    certBadges:['FJMX E365811','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E365811','UL','EMT Conduit (UL 797) — 美国'],
+      ['FJMX7.E365811','cUL','EMT Conduit (CSA C22.2) — 加拿大'],
+    ],
+    products:['EMT Conduit','IMC','RMC','Conduit Fittings','Conduit Bodies','Weatherproof Boxes'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.yoyaele.com/'},
+      {label:'Made-in-China',url:'https://yoyachina.en.made-in-china.com/'},
+      {label:'Alibaba',url:'https://yoya-china.en.alibaba.com/'},
+    ],
+    buyers:[],
+    note:'中文名：杭州友亚电气有限公司；1992年建厂，地址：萧山普阳镇甄埠路480号；PDF直查确认 FJMX.E365811 + FJMX7.E365811 美国+加拿大双认证。',
+  },
+  /* ══ 14. 杭州安珂进出口 ══ */
+  {
+    id:'anako', cn:'杭州安珂进出口', en:'Hangzhou Anako Import and Export Co., Ltd.',
+    brand:'ANAKO', loc:'杭州萧山，浙江', founded:'1994',
+    certs:['ul','canada'],
+    certBadges:['FJMX E493383','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E493383','UL','EMT Conduit — 美国'],
+      ['FJMX7.E493383','cUL','EMT Conduit — 加拿大'],
+      ['DYIX.E493031','UL','（其他产品类别）'],
+    ],
+    products:['EMT Conduit','Conduit Fittings','Rigid Fittings','Conduit Boxes','Weatherproof Boxes','Flexible Conduit','Strut Channel'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'http://metallictubecn.com/'},
+      {label:'Made-in-China',url:'https://hzanako.en.made-in-china.com/'},
+    ],
+    buyers:[],
+    note:'工厂成立1994年，地址：萧山区金城路927号万象汇B座1416室；产品覆盖EMT+Rigid+Flex+管件+箱体；PDF直查确认美国+加拿大双认证。',
+  },
+  /* ══ 15. 杭州汉晟进出口 ══ */
+  {
+    id:'hanysen', cn:'杭州汉晟进出口', en:'Hangzhou Hanysen Import & Export Co., Ltd.',
+    brand:'HANYSEN', loc:'杭州萧山，浙江', founded:'—',
+    certs:['ul','canada'],
+    certBadges:['FJMX E489033','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E489033','UL','EMT Conduit — 美国'],
+      ['FJMX7.E489033','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit','IMC','RSC','Conduit Connectors','Couplings','Conduit Bodies','Junction Boxes','BS Conduit','Strut Channel'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.hanysen.com/'},
+      {label:'Made-in-China',url:'https://hanysen.en.made-in-china.com/'},
+    ],
+    buyers:[],
+    note:'制造实体：杭州汉晟电气有限公司（下属进出口公司）；地址：萧山区宏山工业区；品牌：HANYSEN / ITCC / GNP / KABLEWIN；PDF直查确认美国+加拿大双认证。',
+  },
+  /* ══ 16. 杭州爱圣柯进出口（Esco） ══ */
+  {
+    id:'esco', cn:'杭州爱圣柯进出口', en:'Hangzhou Esco Import and Export Co., Ltd.',
+    brand:'ESCO', loc:'杭州萧山，浙江', founded:'2005',
+    certs:['ul','canada'],
+    certBadges:['FJMX E479430','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E479430','UL','EMT Conduit — 美国'],
+      ['FJMX7.E479430','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit','IMC','Rigid','PVC Coated Flex','Liquid-Tight Flex','Strut Channel','Cable Tray','GI Trunking'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'http://www.askesco.com/'},
+      {label:'Made-in-China',url:'https://hzesco.en.made-in-china.com/'},
+    ],
+    buyers:['USA','South America','Latin America','Middle East','Africa','Southeast Asia'],
+    note:'中文名：杭州爱圣柯进出口有限公司（askesco.com）；2005年建立，地址：萧山北干街石新中路888号2101室；产品线全覆盖EMT/IMC/Rigid/Flex/Strut/Cable Tray；PDF直查确认美国+加拿大双认证。',
+  },
+  /* ══ 17. 温州鲁丹进出口 ══ */
+  {
+    id:'ludan', cn:'温州鲁丹进出口', en:'Wenzhou Ludan Import And Export Co., Ltd.',
+    brand:'—', loc:'温州，浙江', founded:'—',
+    certs:['ul','canada'],
+    certBadges:['FJMX E545508','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E545508','UL','EMT Conduit — 美国（证号较新）'],
+      ['FJMX7.E545508','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit'],
+    scope:'pipe',
+    links:[],
+    buyers:[],
+    note:'来源：UL ProspectorIQ PDF直查（加拿大认证清单）；E545xxx 系列为近期获证厂商；证号与 Hainan Kainuodia（E545501）接近，均为新入市；公网信息较少，建议直接联系 UL 查询注册地址。',
+  },
+  /* ══ 18. 海南凯诺迪亚国际贸易 ══ */
+  {
+    id:'kainuodia', cn:'海南凯诺迪亚国际贸易', en:'Hainan Kainuodia International Trade Co., Ltd.',
+    brand:'—', loc:'海南', founded:'—',
+    certs:['ul','canada'],
+    certBadges:['FJMX E545501','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E545501','UL','EMT Conduit — 美国（证号较新）'],
+      ['FJMX7.E545501','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit'],
+    scope:'pipe',
+    links:[],
+    buyers:[],
+    note:'来源：UL ProspectorIQ PDF直查；海南注册公司持有 EMT 美国+加拿大认证，可能是贸易型公司（实际生产地待核实）；公网信息极少，建议谨慎对待或联系 UL 确认。',
+  },
+  /* ══ 19. 北京贝尔管道制造 ══ */
+  {
+    id:'bellbj', cn:'北京贝尔管道制造', en:'Beijing Bell Plumbing Manufacturing Ltd.',
+    brand:'BBP', loc:'通州，北京', founded:'—',
+    certs:['ul','canada'],
+    certBadges:['FJMX E483379','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E483379','UL','EMT Conduit (1/2"~4") — 美国'],
+      ['FJMX7.E483379','cUL','EMT Conduit — 加拿大'],
+      ['E483380','UL','（其他导管类产品）'],
+    ],
+    products:['EMT Conduit','Steel Pipe Nipples & Couplings','Gas Pipe Products','Valves','Cast Iron Parts'],
+    scope:'pipe',
+    links:[
+      {label:'官方网站',url:'http://bbp.cn/'},
+      {label:'EC21',url:'https://bbbp.en.ec21.com/'},
+    ],
+    buyers:[],
+    note:'地址：北京通州区货邑镇货邑北大街；品牌BBP；主营管道/配件/阀门，EMT为其导管类产品；PDF直查确认 FJMX.E483379 + FJMX7.E483379 美国+加拿大双认证。',
+  },
+  /* ══ 20. 济南麦驰管道技术 ══ */
+  {
+    id:'jinanmech', cn:'济南麦驰管道技术', en:'Jinan Mech Piping Technology Co., Ltd.',
+    brand:'MECH', loc:'济南（平阴），山东', founded:'2013',
+    certs:['ul','canada'],
+    certBadges:['FJMX E497291','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E497291','UL','EMT Conduit (1/2"~4") — 美国'],
+      ['FJMX7.E497291','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit','IMC','ERW Steel Pipe','Galvanized Steel Pipe'],
+    scope:'pipe',
+    links:[
+      {label:'官方网站',url:'http://www.mechpipingtech.com/'},
+      {label:'Made-in-China',url:'https://mechpiping.en.made-in-china.com/'},
+      {label:'Alibaba',url:'https://mechpipingtech.en.alibaba.com/'},
+    ],
+    buyers:[],
+    note:'2013年成立，地址：山东省济南市平阴县工业园区玫瑰区；主营ERW焊管+镀锌管+EMT Conduit；PDF直查确认 FJMX.E497291 + FJMX7.E497291 美国+加拿大双认证。',
+  },
+  /* ══ 21. 晋江威业诚金属制品 ══ */
+  {
+    id:'jinjiang', cn:'晋江威业诚金属制品', en:'Jin Jiang Weiyecheng Metal Products Co., Ltd.',
+    brand:'—', loc:'晋江，福建', founded:'2006',
+    certs:['ul','canada'],
+    certBadges:['FJMX E470656','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E470656','UL','EMT Conduit — 美国'],
+      ['FJMX7.E470656','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit','HF Welded Pipe','Galvanized Pipe','Square Tube','Rectangular Tube'],
+    scope:'pipe',
+    links:[
+      {label:'官方网站',url:'http://www.weiyecheng.com/'},
+    ],
+    buyers:['Europe','Americas','Middle East','Southeast Asia','Africa'],
+    note:'2006年建厂，地址：福建省晋江市；主营高频焊管/镀锌管/方矩管，出口多大洲；PDF直查确认 FJMX.E470656 + FJMX7.E470656 美国+加拿大双认证。',
+  },
+  /* ══ 22. 天津捷丰钢管实业贸易 ══ */
+  {
+    id:'tianjinjf', cn:'天津捷丰钢管实业贸易', en:'Tianjin JieFeng Steel Pipe Industry and Trading Co., Ltd.',
+    brand:'—', loc:'武清，天津', founded:'2004',
+    certs:['ul','canada'],
+    certBadges:['FJMX E474253','FJMX7 CA'],
+    certRows:[
+      ['FJMX.E474253','UL','EMT Conduit — 美国'],
+      ['FJMX7.E474253','cUL','EMT Conduit — 加拿大'],
+    ],
+    products:['EMT Conduit','Galvanized Steel Pipe','Conduit Pipe'],
+    scope:'pipe',
+    links:[
+      {label:'Alibaba',url:'https://tjjfsp.en.alibaba.com/'},
+      {label:'Made-in-China',url:'https://www.made-in-china.com/showroom/cherry5129/'},
+    ],
+    buyers:[],
+    note:'2004年建厂，地址：天津市武清区王庆坨工业园区清源路；PDF直查确认 FJMX.E474253 + FJMX7.E474253 美国+加拿大双认证。',
+  },
+  /* ══ 23. 福建拓昌进出口贸易（TOCA） ══ */
+  {
+    id:'fjtuochang', cn:'福建拓昌进出口贸易', en:'Fujian Tuochang Import and Export Trade Co., Ltd.',
+    brand:'TOCA', loc:'福建', founded:'2015',
+    certs:['ul','canada','iso'],
+    certBadges:['FJMX E539936','FJMX7 CA','ISO 9001'],
+    certRows:[
+      ['FJMX.E539936','UL','EMT Conduit (UL797, 1/2"~4") — 美国'],
+      ['FJMX7.E539936','cUL','EMT Conduit — 加拿大'],
+      ['UL1242','UL','IMC (C80.6)'],
+    ],
+    products:['EMT Conduit','IMC Conduit','BS Conduit (BS4568/BS31)','Strut Channel','PVC Coated Flex','GI Electrical Boxes'],
+    scope:'both',
+    links:[
+      {label:'官方网站',url:'https://www.fjtuochang.com/'},
+      {label:'Made-in-China',url:'https://fjtuochang.en.made-in-china.com/'},
+    ],
+    buyers:[],
+    note:'2015年建立，品牌TOCA；南北双厂区合计5万㎡+450人；产品线覆盖EMT/IMC/BS/Strut/Box；ISO 9001:2008认证；PDF直查确认 FJMX.E539936 + FJMX7.E539936 美国+加拿大双认证。',
+  },
+  /* ══ 24. 潍坊东方钢管（⚠️ 历史召回） ══ */
+  {
+    id:'wfeast', cn:'潍坊东方钢管', en:'Weifang East Steel Pipe Co., Ltd.',
+    brand:'East Conduit', loc:'潍坊，山东', founded:'1979',
+    certs:['ul','canada'],
+    certBadges:['FJMX E340594','FJMX7 CA','⚠️ 历史召回'],
+    certRows:[
+      ['FJMX.E340594','UL','EMT Conduit — 合规证书，美国（现行有效）'],
+      ['FJMX7.E340594','cUL','EMT Conduit — 加拿大'],
+      ['E308289（已作废）','—','⚠️ 2009-2010年生产批次因镀锌腐蚀保护不足召回约235.7万英尺，此证号产品禁止使用'],
+    ],
+    products:['EMT Conduit','Rigid Steel Conduit','Fire Pipe'],
+    scope:'pipe',
+    links:[
+      {label:'官方网站',url:'https://www.eaststeelpipe.com/'},
+      {label:'Made-in-China',url:'https://eaststeelpipe.en.made-in-china.com/'},
+      {label:'Alibaba',url:'https://eaststeelpipe.en.alibaba.com/'},
+      {label:'召回公告 (PR Newswire)',url:'https://www.prnewswire.com/news-releases/weifang-east-steel-pipe-recalls-electrical-metallic-tubing-emt-with-inadequate-corrosion-protection-100120429.html'},
+    ],
+    buyers:[],
+    note:'⚠️ 历史召回警示：2009-2010年生产的约235.7万英尺EMT（UL标记 E308289）因镀锌腐蚀保护不足被召回，不符合美国或加拿大标准。现行合规产品标识为 E340594（PDF直查确认，美国+加拿大双认证）。1979年建厂（中国资历最老EMT厂商之一），距青岛港约156公里。',
+  },
+];
+
+// ── Badge color map ──
+const certClass = {ul:'badge-ul', etl:'badge-etl', cul:'badge-cul', ce:'badge-ce', iso:'badge-iso', bs:'badge-bs'};
+const certLabel = (t) => {
+  if(t.includes('ETL')) return ['badge-etl','ETL'];
+  if(t.startsWith('⚠️')) return ['badge-warn', t];
+  if(t.includes('FJMX7') || t.includes('FKAV7') || t.includes('DWTT7') || t.includes('KDER7') || t.startsWith('cUL')) return ['badge-cul','cUL'];
+  if(t.startsWith('FJMX') || t.startsWith('FKAV') || t.startsWith('DWTT') || t.startsWith('KDER') || t.startsWith('UL')) return ['badge-ul', t];
+  if(t.startsWith('CE')) return ['badge-ce','CE'];
+  if(t.startsWith('ISO')) return ['badge-iso', t];
+  if(t.startsWith('BS') || t.startsWith('IEC')) return ['badge-bs', t];
+  if(t.startsWith('CSA')) return ['badge-cul', t];
+  return ['badge-ul', t];
+};
+
+const scopeLabel = {both:'管体 + 管件', pipe:'管体为主', fittings:'管件为主'};
+const scopeClass = {both:'scope-both', pipe:'scope-pipe', fittings:'scope-fittings'};
+
+function badgeHTML(badges) {
+  return badges.map(b => {
+    const [cls, label] = certLabel(b);
+    return `<span class="badge ${cls}">${label}</span>`;
+  }).join('');
+}
+
+function buildCards() {
+  const grid = document.getElementById('grid');
+  grid.innerHTML = D.map(c => `
+    <div class="card" data-id="${c.id}" data-scope="${c.scope}" data-certs="${c.certs.join(',')}">
+      <div class="card-head">
+        <div>
+          <div class="company-name">${c.cn}</div>
+          <div class="company-en">${c.en}</div>
+        </div>
+        ${c.brand !== '—' ? `<span class="brand-tag">${c.brand}</span>` : ''}
+      </div>
+      <div class="meta-row">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        ${c.loc} ${c.founded !== '—' ? `&nbsp;·&nbsp; 成立 ${c.founded}` : ''}
+      </div>
+      <div class="cert-badges">${badgeHTML(c.certBadges)}</div>
+      <div class="product-chips">${c.products.slice(0,4).map((p,i)=>`<span class="chip${i<2?' highlight':''}">${p}</span>`).join('')}${c.products.length>4?`<span class="chip">+${c.products.length-4}</span>`:''}</div>
+      <div class="scope-strip ${scopeClass[c.scope]}">● ${scopeLabel[c.scope]}</div>
+    </div>
+  `).join('');
+
+  grid.querySelectorAll('.card').forEach(el => {
+    el.addEventListener('click', () => openModal(el.dataset.id));
+  });
+}
+
+function openModal(id) {
+  const c = D.find(x => x.id === id);
+  const mbody = document.getElementById('mbody');
+  mbody.innerHTML = `
+    <h2>${c.cn}${c.brand !== '—' ? ` <span style="font-size:13px;font-weight:400;color:var(--muted)">/ ${c.brand}</span>` : ''}</h2>
+    <div class="m-en">${c.en} &nbsp;·&nbsp; ${c.loc}${c.founded !== '—' ? ` &nbsp;·&nbsp; 成立 ${c.founded}` : ''}</div>
+
+    <div class="modal-grid">
+      <div>
+        <div class="m-section">
+          <h3>认证徽章</h3>
+          <div class="cert-badges" style="gap:6px">${badgeHTML(c.certBadges)}</div>
+        </div>
+        <div class="m-section">
+          <h3>产品范围</h3>
+          <div class="product-chips" style="gap:5px">${c.products.map(p=>`<span class="chip">${p}</span>`).join('')}</div>
+          <div style="margin-top:8px;font-size:11px;" class="${scopeClass[c.scope]}">● ${scopeLabel[c.scope]}</div>
+        </div>
+      </div>
+      <div>
+        ${c.buyers && c.buyers.length ? `
+        <div class="m-section">
+          <h3>已知买家 / 出货市场</h3>
+          <div class="buyers">${c.buyers.map(b=>`<span class="buyer-chip">${b}</span>`).join('')}</div>
+        </div>` : ''}
+        <div class="m-section">
+          <h3>相关链接</h3>
+          <div class="m-links">${c.links.map(l=>`<a class="m-link" href="${l.url}" target="_blank">🔗 ${l.label}</a>`).join('')}
+          <a class="m-link" href="https://iq2.ulprospector.com/en/search" target="_blank">🔍 UL ProspectorIQ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-section">
+      <h3>认证证书详情</h3>
+      <table class="cert-table">
+        <tr style="background:var(--line)"><td style="font-size:10px;color:var(--muted)">证书号 / 标准</td><td style="font-size:10px;color:var(--muted)">认证机构</td><td style="font-size:10px;color:var(--muted)">覆盖产品</td></tr>
+        ${c.certRows.map(r=>`<tr><td>${r[0]}</td><td>${badgeHTML([r[1]])}</td><td>${r[2]}</td></tr>`).join('')}
+      </table>
+    </div>
+
+    <div class="m-section">
+      <h3>调研备注</h3>
+      <div class="note-box">${c.note}</div>
+    </div>
+  `;
+  document.getElementById('overlay').classList.add('open');
+}
+
+function closeModal(e, force) {
+  if (force || !e || e.target === document.getElementById('overlay')) {
+    document.getElementById('overlay').classList.remove('open');
+  }
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeModal(null, true); });
+
+// ── Filter ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const f = this.dataset.filter;
+    let visible = 0;
+    document.querySelectorAll('.card').forEach(card => {
+      const scope = card.dataset.scope;
+      const certs = card.dataset.certs;
+      let show = false;
+      if(f === 'all') show = true;
+      else if(f === 'pipe') show = scope === 'pipe' || scope === 'both';
+      else if(f === 'fittings') show = scope === 'fittings' || scope === 'both';
+      else if(f === 'both') show = scope === 'both';
+      else if(f === 'ul') show = certs.includes('ul');
+      else if(f === 'etl') show = certs.includes('etl');
+      else if(f === 'cul' || f === 'canada') show = certs.includes('cul') || certs.includes('canada');
+      card.classList.toggle('hidden', !show);
+      if(show) visible++;
+    });
+    const empty = document.getElementById('empty');
+    empty.classList.toggle('show', visible === 0);
+    empty.textContent = `暂无符合"${this.textContent}"条件的供应商`;
+  });
+});
+
+// ── Export ──
+document.getElementById('copyBtn').addEventListener('click', function() {
+  const lines = ['# 中国 EMT 导管持证供应商汇总（2026-06-10）\n'];
+  D.forEach((c,i) => {
+    lines.push(`## ${i+1}. ${c.cn} (${c.brand !== '—' ? c.brand : c.en})`);
+    lines.push(`- 地址：${c.loc}${c.founded !== '—' ? `  成立：${c.founded}` : ''}`);
+    lines.push(`- 认证：${c.certBadges.join(' / ')}`);
+    lines.push(`- 产品：${c.products.join(', ')}`);
+    lines.push(`- 范围：${scopeLabel[c.scope]}`);
+    if(c.links.length) lines.push(`- 链接：${c.links.map(l=>l.url).join(' | ')}`);
+    lines.push('');
+  });
+  navigator.clipboard.writeText(lines.join('\n')).then(() => {
+    this.textContent = '✅ 已复制';
+    setTimeout(() => this.textContent = '📋 复制摘要', 2000);
+  });
+});
+
+buildCards();
+</script>
+</body>
+</html>
