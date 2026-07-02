@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>国内 EMT 热镀锌厂调研 · 2026-07-02</title>
+<style>
+:root{
+  --bg:#0f1115;--fg:#e6e8eb;--muted:#9aa3ad;
+  --accent:#7aa2ff;--good:#5fd07a;--warn:#ffb454;--bad:#ff6b6b;
+  --card:#171a20;--line:#262a31;--hover:#1e2229;
+  --t1:#5fd07a;--t2:#7aa2ff;--t3:#ffb454;--strip:#34d399;--zam:#a78bfa;--excl:#ff6b6b;
+}
+@media (prefers-color-scheme:light){
+  :root{--bg:#f4f6f9;--fg:#15181c;--muted:#5b6370;--card:#fff;--line:#e0e4ea;--hover:#f0f3f7;}
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--fg);font:14px/1.6 system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;min-height:100vh;}
+a{color:var(--accent);text-decoration:none;}a:hover{text-decoration:underline;}
+.wrap{max-width:1340px;margin-inline:auto;}
+
+.hdr{background:linear-gradient(135deg,#0d1b2e 0%,#0f1115 100%);border-bottom:1px solid var(--line);padding:28px 24px 20px;text-align:center;}
+@media (prefers-color-scheme:light){.hdr{background:linear-gradient(135deg,#e8eefc 0%,#f4f6f9 100%);}}
+.hdr h1{font-size:21px;font-weight:700;letter-spacing:.3px;}
+.hdr p{color:var(--muted);font-size:12.5px;margin-top:6px;}
+.stats{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap;}
+.stat .n{font-size:24px;font-weight:700;color:var(--accent);}
+.stat .l{font-size:10.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;}
+
+.sec{padding:16px 24px;border-bottom:1px solid var(--line);}
+.sec h2{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.sec h2 .tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--line);color:var(--muted);}
+.sub{font-size:11.5px;color:var(--muted);margin:-4px 0 10px;line-height:1.6;}
+
+/* 需求条 */
+.reqbar{display:flex;flex-wrap:wrap;gap:8px;}
+.reqbar .rc{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:12px;flex:1 1 200px;}
+.reqbar .rc .k{font-size:10.5px;color:var(--muted);}
+.reqbar .rc b{color:var(--accent);}
+.hl-bad{color:var(--bad);font-weight:600;}.hl-good{color:var(--good);font-weight:600;}
+
+/* 路线 & 认证 表 */
+table.rt{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+table.rt th,table.rt td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;}
+table.rt th{background:var(--hover);font-size:10.5px;color:var(--muted);font-weight:600;}
+.pro{color:var(--good);}.con{color:var(--bad);}.q{color:var(--warn);}
+.callout{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 13px;font-size:12px;line-height:1.65;}
+.callout.warn{border-left-color:var(--warn);}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+@media(max-width:760px){.split{grid-template-columns:1fr;}}
+.split .box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:11.5px;line-height:1.6;}
+.split .box h4{font-size:11.5px;margin-bottom:5px;}
+.split .box.spec h4{color:var(--accent);}.split .box.ul h4{color:var(--good);}
+.split3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:6px;}
+@media(max-width:900px){.split3{grid-template-columns:1fr;}}
+.split3 .box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:11px 13px;font-size:11.5px;line-height:1.6;}
+.split3 .box h4{font-size:12px;margin-bottom:7px;}
+.split3 .box ul{margin:2px 0 0 15px;}
+.split3 .box li{margin-bottom:5px;}
+.split3 .box sup{color:var(--accent);font-size:9px;font-weight:700;}
+.refs{margin-top:10px;font-size:10.5px;color:var(--muted);line-height:1.8;}
+.refs b{color:var(--fg);}
+.leads-strip{margin-top:10px;font-size:11px;color:var(--muted);background:var(--hover);border:1px dashed var(--line);border-radius:8px;padding:9px 12px;}
+
+/* 候选表 */
+.toolbar{display:flex;gap:8px;align-items:center;padding:12px 24px 0;flex-wrap:wrap;}
+.export-btn{background:transparent;border:1px solid var(--line);color:var(--muted);padding:5px 13px;border-radius:6px;font-size:11.5px;cursor:pointer;}
+.export-btn:hover{border-color:var(--accent);color:var(--accent);}
+.legend{font-size:10.5px;color:var(--muted);margin-left:auto;}
+.tbl-wrap{overflow-x:auto;margin-top:8px;}
+table.ctbl{border-collapse:collapse;width:100%;min-width:860px;font-size:11.5px;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;table-layout:fixed;}
+table.ctbl th,table.ctbl td{border-bottom:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top;line-height:1.5;word-wrap:break-word;overflow-wrap:anywhere;}
+table.ctbl th{background:var(--hover);font-size:10px;color:var(--muted);font-weight:600;white-space:nowrap;}
+.rowbadges{margin-top:5px;display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
+tr.grp td{font-weight:700;font-size:12px;padding:8px 10px;border-bottom:1px solid var(--line);}
+tr.grp.g1 td{background:rgba(95,208,122,.12);border-left:3px solid var(--t1);}
+tr.grp.g2 td{background:rgba(122,162,255,.12);border-left:3px solid var(--t2);}
+tr.grp.g3 td{background:rgba(255,180,84,.12);border-left:3px solid var(--t3);}
+tr.grp.gB td{background:rgba(52,211,153,.12);border-left:3px solid var(--strip);}
+tr.grp.gC td{background:rgba(167,139,250,.12);border-left:3px solid var(--zam);}
+tr.grp td .desc{font-weight:400;font-size:10.5px;color:var(--muted);margin-left:8px;}
+tbody tr.row{cursor:pointer;}
+tbody tr.row:hover{background:var(--hover);}
+.cn2{font-weight:700;font-size:12px;}
+.en2{font-size:9.5px;color:var(--muted);}
+.lo2{font-size:10.5px;color:var(--muted);}
+.cu2{color:var(--warn);font-size:9px;border:1px solid rgba(255,180,84,.4);border-radius:3px;padding:0 4px;margin-left:3px;white-space:nowrap;}
+.coat{color:var(--good);font-weight:600;}
+.badge{display:inline-block;padding:1px 7px;border-radius:999px;font-size:9.5px;font-weight:700;}
+.fit-high{background:var(--good);color:#04210f;}.fit-medium{background:var(--warn);color:#3a2600;}.fit-low{background:var(--line);color:var(--muted);}
+.conf{font-size:9.5px;padding:1px 6px;border-radius:4px;border:1px solid var(--line);display:inline-block;}
+.conf-verified{color:var(--good);border-color:rgba(95,208,122,.4);}
+.conf-partial{color:var(--warn);border-color:rgba(255,180,84,.4);}
+.conf-unverified{color:var(--muted);}
+.excl-strip{margin-top:10px;font-size:11px;color:var(--muted);background:rgba(255,107,107,.07);border:1px solid rgba(255,107,107,.25);border-radius:8px;padding:9px 12px;}
+.rowlink{font-size:9.5px;color:var(--accent);}
+
+/* Modal */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow-y:auto;}
+.overlay.open{display:flex;}
+.modal{background:var(--card);border:1px solid var(--line);border-radius:14px;max-width:720px;width:100%;padding:22px;position:relative;}
+.mclose{position:absolute;top:12px;right:14px;font-size:22px;color:var(--muted);cursor:pointer;background:none;border:none;}
+.modal h2{font-size:17px;margin-bottom:2px;padding-right:30px;}
+.m-en{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.m-sec{margin-top:12px;}
+.m-sec h3{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:5px;}
+.kv{display:grid;grid-template-columns:92px 1fr;gap:4px 12px;font-size:12px;}
+.kv .k{color:var(--muted);}
+.note-box{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:12px;line-height:1.6;}
+.m-links{display:flex;flex-wrap:wrap;gap:7px;}
+.m-link{font-size:11.5px;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 9px;}
+.contact-line{font-size:12px;line-height:1.8;}
+
+.foot{padding:18px 24px 56px;color:var(--muted);font-size:11.5px;line-height:1.7;}
+.foot h3{color:var(--fg);font-size:13px;margin:12px 0 6px;}
+.foot .warn-case{background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.3);border-radius:8px;padding:10px 12px;color:var(--fg);}
+</style>
+</head>
+<body>
+<div class="hdr">
+  <div class="wrap">
+    <h1>国内 EMT 热镀锌厂调研</h1>
+    <p>为 Precise Pipe 自建 EMT 排线管产线寻找镀锌代工 · 调研时点 2026-07-02 · 需求源自 Slack #conduit-procure（87 条去重转录）</p>
+    <div class="stats" id="stats"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 需求条 -->
+  <div class="sec">
+    <h2>🎯 需求画像 <span class="tag">从线程综合</span></h2>
+    <div class="reqbar">
+      <div class="rc"><div class="k">产品</div><b>EMT ½″–4″</b>（主力 ¾/1/2″）10ft，<b>薄壁 1.07–2.11mm SPCC</b></div>
+      <div class="rc"><div class="k">镀锌工艺</div><b>焊后 250g 热镀/吹镀</b>；预镀锌 5–10μm <span class="hl-bad">过不了硫酸铜</span></div>
+      <div class="rc"><div class="k">质量硬指标</div>表面光滑、管口干净；薄壁热镀<span class="hl-bad">受热形变/良率低</span></div>
+      <div class="rc"><div class="k">硬性排除</div><span class="hl-bad">✗ 友发（全系）</span>；大邱庄锌渣多被否</div>
+      <div class="rc"><div class="k">偏好</div><span class="hl-good">无锡/江苏/华东、南方优先</span>；量大（带钢 200–300t 起订）</div>
+      <div class="rc"><div class="k">认证</div>UL797 / CSA C22.2 No.83.1；UL Solutions 国内已接洽</div>
+    </div>
+  </div>
+
+  <!-- 工艺路线 -->
+  <div class="sec">
+    <h2>🛠️ 三条工艺路线 <span class="tag">决定该找哪类厂</span></h2>
+    <table class="rt">
+      <tr><th style="width:150px">路线</th><th>做法</th><th>优 / 难点</th></tr>
+      <tr><td style="color:var(--t2);font-weight:600">A. 焊后热镀/吹镀<br><span style="font-size:10px;color:var(--muted)">→ 表1 热镀锌厂</span></td><td>光亮焊管去焊缝 → 送镀锌厂对成品管 250g 热镀</td><td><span class="pro">焊缝也镀住、防锈完整、量产易切换</span>；<span class="con">薄壁受热不均易形变、批镀易挂锌瘤 → 需离心甩锌/吹气控光洁</span></td></tr>
+      <tr><td style="color:var(--strip);font-weight:600">B. 带钢先镀再焊<br><span style="font-size:10px;color:var(--muted)">→ 表2 带钢 CGL</span></td><td>SPCC 带钢连续热镀 250g → 镀锌带做焊管（Alex 主张最优）</td><td><span class="pro">表面/公差最好、连续镀层均匀、省一个受检厂</span>；<span class="q">焊缝烧损 → 能否过硫酸铜？带钢起订 200–300t？（未决）</span></td></tr>
+      <tr><td style="color:var(--zam);font-weight:600">C. 锌铝镁卷<br><span style="font-size:10px;color:var(--muted)">→ 表2 ZAM</span></td><td>锌铝镁镀层卷做焊管，替代普通镀锌</td><td><span class="pro">表面好看、能过硫酸铜、公差达标</span>；<span class="q">UL/CSA 是否接受该镀层化学？手弯 90° 是否开裂？（待测）</span></td></tr>
+    </table>
+  </div>
+
+  <!-- 技术分析 -->
+  <div class="sec" id="tech-sec">
+    <h2>🔬 技术分析：薄壁焊管为何热镀易形变 + 对材质的要求 <span class="tag">证据溯源 · 附标准</span></h2>
+    <div class="sub">线程里"薄壁热镀受热不均易形变、良率低"不是玄学，是有行业标准与机理支撑的工程问题。以下每条都给可核对来源（编号见文末参考）。</div>
+    <div class="split3">
+      <div class="box"><h4 style="color:var(--bad)">① 为什么变形（高温 + 薄壁）</h4>
+        <ul>
+          <li><b>热冲击</b>：热浸锌浴 ~<b>450–460°C</b>，钢件被快速加热到 <b>815–850°F</b> 再冷却<sup>[1][5]</sup></li>
+          <li><b>不均匀受热</b>：件斜插入浴、沿长度形成温度梯度 → 钢内<b>残余应力分时段释放</b> → 形状/对中改变<sup>[2]</sup></li>
+          <li><b>薄壁最敏感</b>：最常变形的是 ¼″(6mm) 及以下薄件，<b>规格越薄、翘曲风险越大</b><sup>[2][3]</sup></li>
+          <li><b>残余应力源</b>：ERW 焊接 + 冷轧/成型的残余应力在镀锌温度被释放；强力装夹焊接引入的内应力会在锅里翘曲<sup>[3]</sup></li>
+          <li><b>差异厚度</b>：厚薄不一/非对称截面受热冷却速率不同 → 变形<sup>[2][4]</sup></li>
+        </ul>
+      </div>
+      <div class="box"><h4 style="color:var(--accent)">② 对材质的要求（ASTM A385 化学）</h4>
+        <ul>
+          <li>钢的 <b>Si/P 含量</b>决定 Fe-Zn 反应活性 → 镀层厚度/外观/附着；<b>硅当量 = Si% + 2.5×P%</b><sup>[6]</sup></li>
+          <li><b>良好镀层区间</b>：Si <b>&lt;0.04%</b> 或 <b>0.15–0.22%</b>；P <b>&lt;0.04%</b><sup>[6]</sup></li>
+          <li><b>"Sandelin"活性区</b>（硅当量 0.04–0.15%）→ 反应不可控、镀层过厚（<b>200–380μm / 8–15mils</b>）、发灰粗糙；>0.22% 同样灰暗超厚<sup>[6][7]</sup></li>
+          <li>反应性钢的<b>厚脆镀层易分层</b>，对薄壁 EMT 的"手弯不开裂+表面光滑"是直接杀手 → 应选<b>非反应性低碳钢</b>（SPCC 属低碳低 Si，与线程选材一致）<sup>[6]</sup></li>
+        </ul>
+      </div>
+      <div class="box"><h4 style="color:var(--good)">③ 建议方向</h4>
+        <ul>
+          <li><b>优先"连续/预镀"替代"批量热浸"</b>：EMT 主流正是 ERW 焊后<b>在线镀锌</b>/<b>预镀锌带</b>——连续线单件热历史短、张力受控，不经历批量浸-提的分时应力释放；这从机理解释了"薄壁批镀良率不行"，也是<b>路线 B（带钢先镀再焊）</b>能规避变形的原因<sup>[2][3]</sup> <span style="color:var(--warn)">⚠️ 属机理推断+行业实践，未见"连续 vs 批量对薄壁管变形"的直接量化文献，需打样验证</span></li>
+          <li><b>若坚持焊后批量热镀</b>：控浸入/提出角度与速度、单次浸镀、对称装夹、<b>离心甩锌</b>控薄件多余锌<sup>[3][4]</sup></li>
+          <li><b>材质控制</b>：向钢厂索化学成分，确保硅当量落在良好区间；厚薄一致、低残余应力<sup>[3][6]</sup></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:10px">
+      <b>📋 与各厂沟通"必问三条"（据 ASTM A384 / A385，适用于表1所有候选）：</b>
+      ① 能否提供<b>带钢/基板化学成分</b>（Si、P、硅当量）并落在良好区间？
+      ② 薄壁<b>变形控制工艺</b>——连续/在线 vs 批量热浸？装夹/浸提速度/离心甩锌？
+      ③ 出<b>样管</b>做 <b>硫酸铜 Preece（外壁4次）+ 手弯 90° 弯曲 + 镀层测厚/最薄点</b>验证。
+    </div>
+    <div class="refs">
+      <b>参考来源（可溯源核对）：</b>
+      [1] <a href="https://en.wikipedia.org/wiki/Hot-dip_galvanization" target="_blank">Wikipedia《Hot-dip galvanization》</a>浴温~450°C ·
+      [2] <a href="https://galvanizeit.org/design-and-fabrication/design-considerations/distortion-and-warping" target="_blank">AGA《Distortion &amp; Warping》</a>不均匀受热/残余应力释放/薄件风险 ·
+      [3] <a href="https://galvanizeit.org/knowledgebase/article/minimizing-the-risk-of-warpage-and-distortion" target="_blank">AGA《Minimizing the Risk of Warpage and Distortion》</a>厚薄一致/装夹应力/对称件 ·
+      [4] <a href="https://store.astm.org/a0384_a0384m-07r19.html" target="_blank"><b>ASTM A384/A384M</b></a>《Safeguarding Against Warpage and Distortion During Hot-Dip Galvanizing》 ·
+      [5] <a href="https://galvanizeit.org/designing-for-hot-dip-galvanizing/hot-dip-galvanizing" target="_blank">AGA《Hot-Dip Galvanizing (HDG)》</a>815–850°F ·
+      [6] <a href="https://galvanizeit.org/knowledgebase/article/evaluating-steel-chemistry-prior-to-galvanizing" target="_blank">AGA《Evaluating Steel Chemistry》</a> / <b>ASTM A385/A385M</b>《Providing High-Quality Zinc Coatings》硅当量/Sandelin/良好区间 ·
+      [7] <a href="https://www.hotdipgalvanizing.com/technical-resources/steel-chemistry-evaluation-for-hot-dip-galvanizing-predicting-coating-characteristics" target="_blank">《Steel Chemistry Evaluation》</a>镀层 8–15mils。
+      对照标准：<b>ASTM A123/A123M</b>（成品件热镀锌层）、<b>ISO 1461</b>（钢铁件热浸镀锌层）；EMT 本体判据仍以 <b>UL797 / CSA C22.2 No.83.1 + 硫酸铜 Preece</b> 为准（见认证区）。
+    </div>
+  </div>
+
+  <!-- 认证结构 -->
+  <div class="sec">
+    <h2>📜 认证结构 & 250g≠UL判据 <span class="tag">R3 核实</span></h2>
+    <div class="callout warn" style="margin-bottom:10px">
+      <b>镀锌厂要不要进 UL 范围？</b>按 UL Follow-Up Service「Manufacturing Location」定义（凡产品被 processed/finished 的地点都算受检点）——
+      <b style="color:var(--warn)">焊后热镀 = 独立镀锌厂是第 2 个受检厂 → 焊管厂+镀锌厂两厂都进 UL 范围</b>；
+      <b style="color:var(--good)">带钢先镀 = 镀锌是来料，省一个受检厂</b>（但焊缝过硫酸铜是技术难关）。
+      认证「省事度」：预镀 › 250g焊后热镀 › <b style="color:var(--zam)">ZAM/有机涂层（最贵，且无公开证据 UL 已认 ZAM 作 EMT 镀层）</b>。
+    </div>
+    <div class="split">
+      <div class="box spec"><h4>① 商业口径</h4><b>250 g/m² 锌层克重</b>（对标伊莱克曼/友发 250g）——寿命目标，非 UL 门槛，单/双面待核。</div>
+      <div class="box ul"><h4>② UL797/CSA 强制判据</h4>硫酸铜(Preece) 外壁 4×60s（§6.2.2.8）、内壁 1×60s（§6.2.2.9）+ ASTM A239 最薄点。<b>不看 g/m²</b>——克重达标 ≠ 过 UL。</div>
+    </div>
+  </div>
+
+  <!-- 表1 热镀锌厂 -->
+  <div class="sec">
+    <h2>🏭 表 1 · 热镀锌厂候选（给焊管做热镀 · 路线 A）</h2>
+    <div class="sub">按类型分：<b style="color:var(--t1)">类型1</b> 做热镀＋自产 EMT 管（一站式、薄壁实绩天然具备）· <b style="color:var(--t2)">类型2</b> 只做热镀(代镀)＋具薄壁/薄件工艺基础 · <b style="color:var(--t3)">类型3</b> 只做热镀＋无薄壁经验（结构件为主，需开薄壁专线）。点行看详情。</div>
+    <div class="toolbar" style="padding-left:0;padding-right:0">
+      <button class="export-btn" id="copyBtn">📋 复制两表摘要 (markdown)</button>
+      <span class="legend">匹配 <span class="badge fit-high">高</span> <span class="badge fit-medium">中</span> <span class="badge fit-low">低</span> · 置信 <span class="conf conf-verified">已核实</span> <span class="conf conf-partial">部分</span> <span class="conf conf-unverified">待核</span></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="ctbl">
+        <thead><tr>
+          <th style="width:16%">厂名 / 位置 · 匹配置信</th><th style="width:20%">工艺 & 锌层克重</th>
+          <th style="width:19%">薄壁 & 表面能力</th><th style="width:17%">认证支持</th>
+          <th style="width:12%">物流 / 环保</th><th style="width:16%">联系方式（待核实）</th>
+        </tr></thead>
+        <tbody id="tb1"></tbody>
+      </table>
+    </div>
+    <div class="excl-strip">⛔ <b>排除（不联系、仅作比价基准）</b>：友发钢管集团（天津/溧阳/江苏友发，全系——老板明确反复"不要友发"）；天津大邱庄集群（元泰德润/天英泰/宝利金等，商品级大规模、锌渣锌瘤多、表面粗放）。友发的"ERW 焊后在线镀锌"可作路线 B 焊缝过硫酸铜风险的工艺对照。</div>
+    <div class="leads-strip">🔎 <b>更多线索 & 竞品供应链情报</b>（低置信/待核实，作反查用）：<br>
+      · <b>萧山"进出口贸易品牌"集群</b>：杭州拓普 Topele、杭州福斯 FOSO（外采管体 + 外协热镀，非自产——反查其上游制管/热镀厂比直接采购更有价值）。<br>
+      · <b>长三角本地纯代镀"就近打样"线索</b>：常熟庆生 0512-52409588、常熟荣盛 13862323638、常熟鑫吴保得利（电话待补；注意与天津"宝利金"非同一家）、无锡百容（官网 SSL 失败待核）——均无薄壁 EMT 公开实绩，需企查查/电话核实。<br>
+      · <b>竞品外协挖掘</b>：爱圣柯/宝来的薄壁 EMT 均为外采，实际代工厂未锁定 → <b>读其 cUL 样品钢印上的 UL E-number，到 UL Product iQ 反查真身 listee</b>（锁定"别人用谁镀"的最快法）；RIFI 真身 = 长沙艾威尔（2 基地 + ~10 采购厂的贸易品牌）。
+    </div>
+  </div>
+
+  <!-- 表2 替代路线 -->
+  <div class="sec">
+    <h2>🧱 表 2 · 替代路线材料供应商（带钢先镀 / 锌铝镁 · 路线 B/C）</h2>
+    <div class="sub">这类是<b>买镀锌卷/带钢</b>而非"送管代镀"——对应 Alex 主张的<b style="color:var(--strip)">路线 B（带钢先镀再焊）</b>与<b style="color:var(--zam)">路线 C（锌铝镁）</b>。<b style="color:var(--strip)">B</b>=SPCC 冷轧带钢连续热镀 250g 再焊；<b style="color:var(--zam)">C</b>=锌铝镁镀层卷。</div>
+    <div class="tbl-wrap">
+      <table class="ctbl">
+        <thead><tr>
+          <th style="width:16%">厂名 / 位置 · 匹配置信</th><th style="width:17%">镀层克重能力</th>
+          <th style="width:21%">基板 / 适配性</th><th style="width:18%">认证 & 起订</th>
+          <th style="width:12%">物流 / 环保</th><th style="width:16%">联系方式（待核实）</th>
+        </tr></thead>
+        <tbody id="tb2"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <h3>⚠️ 尽调红线案例</h3>
+    <div class="warn-case"><b>潍坊东方 EMT（UL 文件 E308289，已作废）</b>：2009–2010 年约 <b>235.7 万英尺</b> EMT 因<b>镀锌腐蚀保护不足</b>被 UL 召回。镀锌尽调红线＝锌层连续性 / 硫酸铜过检 / 最薄点，不能只看克重。<br><span style="color:var(--muted)">注：该厂现以合规证 <b>E340594</b> 在表1类型1中列为候选（技术/规格匹配强）——正因这段召回史，务必索 UL Follow-up + 第三方镀层测厚报告核实现状质量体系。</span></div>
+    <h3>数据可信度与时效声明</h3>
+    <ul style="margin-left:18px">
+      <li><b>联系方式默认「待核实」</b>：中国内销镀锌厂一手信息多在企查查/天眼查·1688·Made-in-China·官网；除官网直取外一律需电话回拨核实。</li>
+      <li><b>时效敏感</b>：锌价(SHFE/LME)联动、北方冬季环保错峰限产、产能档期——报价前即时确认。</li>
+    </ul>
+    <h3>方法论</h3>
+    <p>需求：Slack #conduit-procure live 抽取 87 条去重转录综合。候选：3 并行研究 agent（华东/南方管材热镀 · 带钢 CGL+锌铝镁 · 同行来源+认证结构+天津对比）+ 观察 agent 审查。镀层判据引自 UL797/CSA C22.2 No.83.1（2023 协调版）§6.2.2.8/6.2.2.9/A.1 item8。</p>
+    <p style="margin-top:8px;color:var(--muted)">© Precise Pipe 内部调研 · 仅供采购决策参考 · 不对外</p>
+  </div>
+
+</div>
+
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="mclose" onclick="closeModal(null,true)">×</button>
+    <div id="mbody"></div>
+  </div>
+</div>
+
+<script>
+/*__DATA__*/
+const D = [
+// ══ 表1 · 热镀锌厂（路线 A）══
+// 类型1：做热镀 + 自产 EMT 管（一站式）
+{ id:'walsall', tbl:1, type:1, cn:'广东华捷钢管实业', en:'Guangdong Huajie (Walsall)', loc:'中山，广东（华南）',
+  fit:'high', confidence:'verified',
+  process:'高频焊管 + 全自动热浸镀锌线（自产 UL797 EMT 成品）',
+  coating:'官网未标克重（目标 250–300g 需索样/询价确认）',
+  tube_range:'EMT ½″–4″，10ft', surface:'全自动热浸线；薄壁锌渣/管口控制需样管验证',
+  capacity:'约 10 万吨/年，可吃 200–300t；自有 2000 吨码头',
+  logistics:'华南中山，离无锡远（代镀需长途运焊管）', env_risk:'华南，限产风险低',
+  cert_support:'已量产 UL797/ANSI C80.3 EMT——最接近一体化成品认证',
+  certs:['ISO9001','UL797/ANSI C80.3','特种设备生产许可'],
+  address:'广东省中山市民众街道沿江村锦江路沿江段95号',
+  contact:{phone:'0760-88705693 / 0760-88793550', email:'walsall@163.com', website:'http://www.walsall.com.cn/', other:'传真 0760-88700137'},
+  fit_reason:'本轮最对口：已量产 UL797 焊后热镀 EMT ½–4″、自有全自动热浸线，直接覆盖薄壁小口径 EMT 热镀核心难点，非友发。',
+  note:'需确认：①接来料代镀还是只卖成品 EMT；②锌层能否 250–300g；③索 ¾″、1″ 样管做硫酸铜/Preece + 看锌渣控制。华南距无锡远是最大权衡。',
+  sources:['http://www.walsall.com.cn/','http://www.walsall.com.cn/detail/134.html'] },
+{ id:'evt', tbl:1, type:1, cn:'杭州依科电气（EVT）', en:'Hangzhou EVT Electrical', loc:'杭州萧山，浙江（华东）',
+  fit:'high', confidence:'verified',
+  process:'专业美标导管厂，UL797 EMT 焊后热镀（自产成品）',
+  coating:'未标克重，需询价',
+  tube_range:'EMT/IMC/RMC/FMC 全系，薄壁美标导管主力', surface:'UL 工厂级；样管验证',
+  capacity:'约 3 万余㎡新厂，中等规模；200–300t 产能/交期需确认',
+  logistics:'浙江杭州，离无锡近（华东圈）', env_risk:'华东，低',
+  cert_support:'UL 认证工厂，持多个 UL file（E343475/E472251/E472810/E476069/E476073/E483162）',
+  certs:['UL','ISO9001','CE','IEC61386','高新技术企业'],
+  address:'浙江省杭州市萧山区进化镇欢潭工业区',
+  contact:{phone:'+86-571-82452866', email:'info@evt-electrical.com / sales@evt-electrical.com', website:'https://www.evt-electrical.com/', other:'WhatsApp +86-13735893749'},
+  fit_reason:'华东专业美标导管厂，UL797 EMT 为核心、已解决薄壁小口径焊后镀锌+UL 合规，离无锡近，非友发。',
+  note:'导管主业、UL 文件齐全、工艺对口。规模中等，需确认单批 200–300t 产能与交期、是否接来料代镀。',
+  sources:['https://www.evt-electrical.com/','https://www.evt-electrical.com/about-us'] },
+{ id:'lonwow', tbl:1, type:1, cn:'江阴朗沃实业（Lonwow）', en:'Lonwow Industry', loc:'江阴（无锡辖），江苏（华东）',
+  fit:'medium', confidence:'verified',
+  process:'电工金属导管厂，EMT 预镀锌 + 热浸镀锌两版',
+  coating:'未标克重，需询价',
+  tube_range:'EMT/IMC/RSC 钢导管', surface:'样管验证',
+  capacity:'2016 成立、规模偏小，200–300t 大批量稳定性存疑',
+  logistics:'江阴/无锡同城——离客户焊管厂最近，物流最短', env_risk:'华东，低',
+  cert_support:'持 UL(797)/ANSI C80.3 EMT/IMC/RMC，2017 过 UL',
+  certs:['UL(797)','CE'],
+  address:'江苏省江阴市徐霞客镇西助巷72号',
+  contact:{phone:'+86-510-86876981', email:'sales@lonwow.com', website:'https://www.lonwow.com/', other:'总经理 Mr. Jim Zhu'},
+  fit_reason:'地处江阴（无锡同城），做 UL797 热浸 EMT，光亮焊管可就近送镀、物流最短；规模偏小宜作近距离试单对象。',
+  note:'地理最优。规模小、大批量稳定性存疑，适合试单/区域备选；需确认是否接来料代镀。',
+  sources:['https://www.lonwow.com/','https://lonwow.en.made-in-china.com/product/MdnJliVuaQWk/China-EMT-Conduit-Hot-Dipped-Galvanized-UL-797.html'] },
+{ id:'weifang', tbl:1, type:1, cn:'潍坊东方管业（东方钢管）', en:'Weifang East Steel Pipe', loc:'潍坊，山东（华东偏北）',
+  fit:'medium', confidence:'verified',
+  process:'自有制管(高强钢卷焊管) + 自有热镀线，焊后内外热镀 + 清漆防白锈',
+  coating:'焊后内外热镀（clear lacquer）；克重是否 250g 未标 → 需核实',
+  tube_range:'½″–4″，壁厚 0.042–0.083″ = 1.07–2.11mm（与本次 spec 完全吻合）', surface:'热镀内外+清漆，内壁光滑连续便于穿线',
+  capacity:'EMT 约 5000t/月；集团约 100 万吨/年、800+人、1954 建厂',
+  logistics:'山东潍坊（非华东/南方偏好），就近青岛港、出口经验丰富', env_risk:'⚠️ 2010 年曾在美国召回 2009–2010 期间部分 EMT（防腐不达标，即页脚红线案例 E308289）——现行合规证 E340594',
+  cert_support:'UL797 EMT UL File E340594（FJMX 类，UL Product iQ 已核实 listee=Weifang East）+ cUL(CSA No.83.1)；有 UL/FM 北美出口团队',
+  certs:['UL797 E340594（已核实）','cUL','UL/FM 消防管','API 5L','ISO9001/14001'],
+  address:'潍坊经济开发区民主街 13996 号（另址潍城，需核实以哪个为准）',
+  contact:{phone:'（made-in-china 需登录；出口许可 01940200）', email:'（MIC 店铺询盘，需核实）', website:'https://eaststeelpipe.en.made-in-china.com', other:'MIC 别名 emtsupplier.en.made-in-china.com 同一家'},
+  fit_reason:'技术/规格匹配最强的类型1之一：真 UL797 FJMX 持证(E340594 已核实)、真自有制管+热镀线、壁厚范围与 1.07–2.11mm 完全吻合、产能大。⚠️ 但 2010 美国召回史(E308289) + 非华东/南方，是重点尽调对象。',
+  note:'行业里自称"唯一量产热镀 EMT"的厂，类型1核心样板。⚠️ 与页脚红线召回案例是同一家（历史 E308289 已作废，现行 E340594 合规）——正因如此，务必索 UL Follow-up + 第三方镀层测厚报告核实现状质量体系。',
+  sources:['https://productiq.ulprospector.com/en/profile/1049087/fjmx.e340594','https://eaststeelpipe.en.made-in-china.com/company-profile.html','https://www.prnewswire.com/news-releases/weifang-east-steel-pipe-recalls-electrical-metallic-tubing-emt-with-inadequate-corrosion-protection-100120429.html'] },
+{ id:'tunzel', tbl:1, type:1, cn:'浙江腾泽电气设备（Tunzel）', en:'Zhejiang Tengze Electrical (Tunzel)', loc:'绍兴诸暨店口，浙江（华东）',
+  fit:'medium', confidence:'partial',
+  process:'自产 EMT 管体+管件（EMT/IMC/RMC 导管+弯头/接头）；自有热镀线 or 预镀为主未披露 → 需核实',
+  coating:'预镀/热镀均可（焊后热镀能力与克重需确认）',
+  tube_range:'UL797 EMT ½″–4″（具体壁厚需核实）', surface:'镀锌钢管，需索样确认表面光滑度',
+  capacity:'厂区 20430㎡、65 人、2007 成立',
+  logistics:'浙江诸暨店口（华东，成熟导管产业集群）', env_risk:'诸暨店口导管集群环保一般较规范；自有镀锌 vs 外协需核实',
+  cert_support:'自称持 5 张美国 UL 证 + 沙特 SASO/SABER；EMT 管体 FJMX file 号未公开 → 需核实',
+  certs:['UL（自称5张，file号未公开）','SASO/SABER'],
+  address:'浙江省绍兴市诸暨市店口镇凤江支路 8-1 号',
+  contact:{phone:'+86-575-87779607；手机 +86-13858081578', email:'sales@tunzel-china.com', website:'http://www.tunzel-china.com/', other:'传真 +86-575-87779603'},
+  fit_reason:'华东真实自产制管厂（非纯贸易），有厂房/员工/UL 证体量，区位符合华东优先。硬伤：EMT 管体 UL file 号与"焊后热镀线是否自有"未核实，可能预镀为主、热镀外协。',
+  note:'需直接问：①EMT 管体 UL FJMX file 号；②自有热镀线还是外协；③250g 焊后热镀能否做+镀层报告。若热镀外协，其代镀厂本身也是线索。',
+  sources:['https://tunzel.en.made-in-china.com/company-ZHEJIANG-TENGZE-ELECTRICAL-EQUIPMENT-CO-LTD-.html','http://www.tunzel-china.com/'] },
+// 类型2：只做热镀(代镀) + 具薄壁/薄件工艺基础（EMT 实绩待验证）
+{ id:'yongfeng', tbl:1, type:2, cn:'上海永丰热镀锌集团', en:'Shanghai Yongfeng Hot-dip Galvanizing Group', loc:'上海闵行/金山（华东）',
+  fit:'medium', confidence:'partial',
+  process:'专业来料热浸镀锌；13 条批镀线 + 1 条数字化离心（甩锌）线',
+  coating:'结构件常 ≥400–600g；离心线可控薄件挂锌，250–300g 需确认',
+  tube_range:'历来杆塔/支架结构件；薄壁 1–2mm 小口径管待验证', surface:'离心/甩锌线利于薄件去多余锌、控锌瘤（对"表面光滑"是加分项）',
+  capacity:'约 80 万吨/年，远超 200–300t/批',
+  logistics:'上海（华东圈，离无锡近）；纯代镀，最契合"无锡焊管→送镀"', env_risk:'华东，低',
+  cert_support:'纯镀锌服务商，无 EMT/UL 记录，需配合成品厂进 UL Follow-up',
+  certs:['上海市电镀协会会员'],
+  address:'上海市闵行区华漕镇（总部）；上海聚丰：金山区亭林工业区南亭公路5789号',
+  contact:{phone:'（官网未直接给出，需核实）', email:'', website:'http://www.yongfengrdx.com/', other:'核实路径：官网/闵行黄页/上海市电镀协会'},
+  fit_reason:'类型2 里最有底子的：纯来料代镀模式最对口"无锡焊管送镀"，且有离心甩锌线（薄件控锌能力）——但无 EMT 薄壁实绩，需打样验证。',
+  note:'离心甩锌线是把它从"结构件镀锌"升级到"薄壁 EMT"的最佳工艺基础。需现场核实薄壁 1–2mm 稳定性、锌层控 250–300g、管口/内壁质量。电话待核。',
+  sources:['http://www.yongfengrdx.com/','https://www.shea.cn/index.php?s=profile&c=show&id=1'] },
+{ id:'rencheng', tbl:1, type:2, cn:'常州仁成金属制品（精密钢管/Josen）', en:'Changzhou Rencheng / Josen Precision Steel Tube', loc:'常州武进，江苏（华东）',
+  fit:'medium', confidence:'partial',
+  process:'精密焊管/无缝管制造 + (冷/热)镀锌（多为自产配套，是否接纯代镀待确认）',
+  coating:'未标（对外称提供热镀锌管，克重/双面控锌需核实）',
+  tube_range:'薄壁精密钢管 WT 0.8–20mm、小口径高精度——长三角公开源里最接近薄壁小口径工艺的一家', surface:'精密管对外径/内孔/表面要求高；EMT 250g 吹镀/锌瘤控制未验证',
+  capacity:'起订量需核实',
+  logistics:'常州武进，离无锡约 50km，华东近距', env_risk:'需核实',
+  cert_support:'无 EMT/UL 公开记录；主业精密管制造，若合作需配合成品厂进 FUS',
+  certs:[],
+  address:'常州市武进区遥观镇（门牌需核实）',
+  contact:{phone:'+86-519-83611681', email:'rencheng@rcmetal.cn', website:'https://josen.net', other:''},
+  fit_reason:'类型2 里工艺基础最贴近薄壁的一家：命中"薄壁 0.8mm 精密管 + 热镀锌"，但镀锌偏自产配套、是否接纯来料代镀待确认。',
+  note:'长三角唯一命中"薄壁精密管+热镀锌"的厂。需向厂方直接确认：是否对外来料代镀、能否做焊后 250g 薄壁控锌。',
+  sources:['https://hydrogen.josen.net/m/chanpinzhanshi/hanjie/putonghanjie/101.html'] },
+// 类型3：只做热镀 + 无薄壁经验（结构件/厚壁为主，需开薄壁专线）
+{ id:'kingland', tbl:1, type:3, cn:'浙江金洲管道科技（Kingland）', en:'Zhejiang Jinzhou Pipeline Tech', loc:'湖州吴兴，浙江（华东）',
+  fit:'medium', confidence:'verified',
+  process:'上市公司(002443)，大型热镀锌焊管/无缝管（自产厚壁管+热镀）',
+  coating:'300–600 g/m²（明确，覆盖并超过 250g 目标）',
+  tube_range:'消防 DN25–DN300、燃气 DN15–DN200、无缝 ½–10″；偏厚壁', surface:'正规大厂质量体系；产线以厚壁管为主',
+  capacity:'产能足',
+  logistics:'浙江湖州（华东圈，离无锡近）', env_risk:'华东，低',
+  cert_support:'GB 国标体系，无 EMT 美标经验，需从头做 UL',
+  certs:['GB 国标体系','ISO9001（隐含）'],
+  address:'浙江省湖州市吴兴区区府南路388号',
+  contact:{phone:'0572-2072542（另 2260983/2260601/2097036）', email:'info@chinakingland.com', website:'http://www.chinakingland.com/', other:'股票代码 002443'},
+  fit_reason:'华东大型正规热镀锌管厂、锌层克重(300–600g)天然满足 250g、产能足、质量可靠；短板是偏厚壁消防/燃气管、无薄壁 EMT 经验。',
+  note:'上市公司、克重对口、质量可靠。缺薄壁小口径 EMT 经验；可探询是否愿为薄壁 EMT 开专线试产。非友发。',
+  sources:['http://www.chinakingland.com/ProductCenter1/index.aspx?lcid=8','https://m.mysteel.com/hot/89747.html'] },
+{ id:'xinyu', tbl:1, type:3, cn:'江门新宇金属表面热处理厂', en:'Jiangmen Xinyu Metal Surface Heat-Treatment', loc:'江门蓬江，广东（华南）',
+  fit:'medium', confidence:'partial',
+  process:'专业来料热浸锌，明确承接"圆管热镀锌"',
+  coating:'未标克重，需确认',
+  tube_range:'圆管热镀（结构件/城市路灯/集装箱配件为主）', surface:'需验证薄壁挂具/受热控形',
+  capacity:'厂区 3 万㎡，年约 6 万吨，单批 200–300t 可行需排期',
+  logistics:'华南大湾区，离无锡远', env_risk:'华南，低',
+  cert_support:'无 EMT/UL 记录',
+  certs:[],
+  address:'广东省江门市蓬江区荷塘镇华昌路22号',
+  contact:{phone:'0750-3707833', email:'xinyu12@vip.163.com', website:'https://www.xinyuduxin.com/', other:'欧先生 13610497961；钟先生 18823060580'},
+  fit_reason:'华南专业来料热浸锌、明确做圆管热镀，契合送镀代加工+老板"南方优先"偏好；但无薄壁 EMT/250g/Preece 经验、量级中等、离无锡远。',
+  note:'南方纯镀锌服务商。可探询薄壁小口径挂具/受热控形与克重。联系方式官网+搜索一致性好；建议样管 Preece + 现场看锌渣控制。',
+  sources:['https://www.xinyuduxin.com/','https://www.xinyuduxin.com/article-5-1567.html'] },
+{ id:'guoqiang', tbl:1, type:3, cn:'江苏国强镀锌实业', en:'Jiangsu Guoqiang Galvanizing', loc:'溧阳，江苏（华东）',
+  fit:'low', confidence:'partial',
+  process:'专业钢管/型钢热浸镀锌与电镀锌',
+  coating:'结构热浸偏厚，需确认',
+  tube_range:'焊管/无缝管壁厚 2.0–4.5mm（偏厚）；护栏/支架/脚手架', surface:'结构件级',
+  capacity:'较大',
+  logistics:'江苏溧阳（华东圈）', env_risk:'华东，低',
+  cert_support:'无 EMT/UL',
+  certs:[],
+  address:'江苏省溧阳市上兴镇工业园区',
+  contact:{phone:'0519-87735228', email:'', website:'http://www.jsgq.cn/', other:'传真同电话'},
+  fit_reason:'华东专业热镀锌来料厂、非友发；但壁厚区间偏厚(2–4.5mm)、主做护栏/支架结构件，与 1–2mm 薄壁 EMT+250g+光洁管口差距较大。',
+  note:'位于溧阳（与"溧阳友发"同城但为独立企业，非友发）。产品偏结构，薄壁 EMT 非其强项，列区域备选。',
+  sources:['https://www.jsgq.cn/product/18.html'] },
+{ id:'yongping', tbl:1, type:3, cn:'无锡永平热镀锌', en:'Wuxi Yongping Hot-dip Galvanizing', loc:'无锡锡山东港，江苏（华东）',
+  fit:'low', confidence:'partial',
+  process:'批量热镀锌（自称"恒热镀锌工艺"）；无离心线信息',
+  coating:'结构件常规厚锌层，非 250g 薄锌控制，需核实',
+  tube_range:'承接无缝管/路灯管/钢杆/横担/超长件；偏中大件长杆，薄壁小口径能力未知', surface:'结构件为主，薄壁 EMT 锌瘤/管口控制未验证',
+  capacity:'占地 26400㎡、约 140 人；起订未知',
+  logistics:'无锡本地（锡山东港）——离客户焊管厂最近，区位最优', env_risk:'无锡锡山，热镀锌属限批行业，旺季/督察或限产（需核实）',
+  cert_support:'无 EMT/UL 经验；需配合成品厂进 FUS',
+  certs:[],
+  address:'无锡市锡山区东港镇东港工业园',
+  contact:{phone:'0510-8799507 / 151-0618-1308（陈厂长）', email:'', website:'http://m.yprdx.com/', other:'传真 0510-8602508-811'},
+  fit_reason:'无锡本地纯代镀热镀锌厂、区位最优（离焊管厂最近），适合就近打样；但产品偏结构长杆厚件、无薄壁 250g 实绩。',
+  note:'名称/地址/电话取自企业自有官网，无第三方工商佐证；薄壁 EMT 能力需实地核实。作"就近试样"地利候选。',
+  sources:['http://m.yprdx.com/'] },
+// ══ 表2 · 替代路线材料 ══
+// 路线 B：带钢连续热镀锌 CGL（先镀再焊）
+{ id:'meishan', tbl:2, route:'B', cn:'宝武梅钢（上海梅山钢铁）', en:'Baowu Meishan Iron & Steel', loc:'南京，江苏（华东）',
+  fit:'high', confidence:'partial',
+  process:'冷轧 + 连续热镀锌(CGL)，专精超薄、高表面质量',
+  coating:'常规 Z60–Z275；Z250 级需合同排产确认',
+  tube_range:'带钢；SPCC/深冲基板，薄规格是强项', surface:'超薄带表面质量优（核心强项）',
+  capacity:'宝武体系一体化大厂；单一 Z250 窄料最小排产量需问销售',
+  logistics:'南京（华东，离无锡很近）', env_risk:'华东，低',
+  cert_support:'镀锌带为来料，行政上比焊后热镀省一个受检厂；EMT/UL 需核实',
+  certs:['Q/BQB 402 SPCC','Q/BQB 430 镀锌'],
+  address:'南京市雨花台区（中华门外，龙藏大道与五号路交叉口西侧）',
+  contact:{phone:'（走宝钢/梅钢销售渠道，需核实）', email:'', website:'https://ecommerce.ibaosteel.com（梅钢冷轧手册）', other:'宝钢 esales 平台可查梅钢冷轧/涂镀手册'},
+  fit_reason:'华东、宝武体系、专精薄规格高表面质量冷轧+涂镀、SPCC 基板——最契合"镀锌带做焊管"的表面/公差诉求；离无锡近。',
+  note:'B 路线首选。销售电话、250g 克重、200–300t 单规格排产可行性需直接问梅钢销售。⚠️ 焊缝过硫酸铜是 B 路线核心未决风险。',
+  sources:['https://ecommerce.ibaosteel.com/portal/download/manual/MeiSteel.pdf'] },
+{ id:'dingwei', tbl:2, route:'B', cn:'江阴鼎威新型建材', en:'Jiangyin Dingwei New Building Materials', loc:'江阴华士（无锡辖），江苏（华东）',
+  fit:'medium', confidence:'partial',
+  process:'专业窄带钢厂：冷轧线 2 条 + 热镀锌带钢线 4 条',
+  coating:'建材级约 Z60–Z275；EMT 级 Z250 均匀性/Preece 需专门确认',
+  tube_range:'带钢，可定制规格/宽度；镀层定位偏建材（龙骨/波纹管）', surface:'建材级；能否稳定做到 EMT 硫酸铜级镀层是主要不确定点',
+  capacity:'起订量极低（平台挂牌 10 吨）——最适合小批量试制',
+  logistics:'江阴/无锡同城——离客户焊管厂最近', env_risk:'华东，低',
+  cert_support:'建材类标准；EMT/UL 无公开证据，需核实',
+  certs:['建材类镀锌带钢标准'],
+  address:'江苏省无锡市江阴华士镇工业园区',
+  contact:{phone:'（平台需登录，需核实）', email:'162064395@qq.com', website:'m.alu.cn/aluTrade/1867058.html', other:'挂牌约 4100 元/吨、起订 10 吨；联系人姓芮'},
+  fit_reason:'华东、专业窄带热镀锌、起订量极低——直接命中"小批量试制"痛点+江阴同城；代价是镀层是否达 EMT/Preece 级需实测。',
+  note:'小批量试制的重要备选（vs 大钢厂高 MOQ）+ 地理最优。务必先打样送 Preece。镀层定位偏建材是主要不确定点。',
+  sources:['https://m.alu.cn/aluTrade/1867058.html'] },
+{ id:'baosteel', tbl:2, route:'B', cn:'宝钢股份', en:'Baoshan Iron & Steel (Baosteel)', loc:'上海宝山（华东）',
+  fit:'medium', confidence:'partial',
+  process:'冷轧-GI-镀铝锌-锌铝镁全覆盖（可一厂同报 GI 与 ZAM）',
+  coating:'GI Z80–Z275+ 可按需高克重；ZM/XM 双面约 90–275 g/m²',
+  tube_range:'带钢；家电级 GI(SPCC 基板)最适先镀后焊', surface:'纯净度/表面/公差业界标杆',
+  capacity:'龙头大厂；窄料 MOQ 高，200–300t 窄料多需经认证加工中心聚单',
+  logistics:'上海（华东，离无锡近）', env_risk:'华东，低',
+  cert_support:'Q/BQB、ISO/IATF；EMT/UL 需核实',
+  certs:['Q/BQB','ISO/IATF'],
+  address:'上海市宝山区富锦路885号',
+  contact:{phone:'（宝钢销售/客服热线，需核实）', email:'', website:'http://esales.baosteel.com', other:'esales 平台有冷轧/汽车板/锌铝镁手册'},
+  fit_reason:'基板/表面/克重全满足，且能同时报 GI 与 ZAM 两条路线；短板是大厂 MOQ 与窄带排产门槛。',
+  note:'能一厂覆盖 B(GI) 与 C(ZAM)。BaoZM 低铝(Zn-1~2%Al-1~2%Mg)成形性优于 GI、焊点/切边耐蚀约 2–5 倍，对"手弯"痛点正面——但 UL 是否接受 ZAM 镀层化学须核标准。',
+  sources:['http://esales.baosteel.com/portal/download/manual/ColdRolled.pdf'] },
+{ id:'masteel', tbl:2, route:'B', cn:'马钢（马鞍山钢铁）', en:'Maanshan Iron & Steel', loc:'马鞍山，安徽（华东）',
+  fit:'medium', confidence:'partial',
+  process:'4 条连续热镀锌线（新日铁/西门子设备），全无花纯锌',
+  coating:'常规 Z60–Z275；Z250 需合同确认',
+  tube_range:'带钢；SPCC/深冲基板；无花镀锌表面细腻，适冷成型+焊管', surface:'全无花纯锌、锌层均匀、家电/精密件级',
+  capacity:'镀锌年产约 150 万吨；MOQ/窄带定制门槛需谈',
+  logistics:'安徽马鞍山（华东圈）', env_risk:'华东，低',
+  cert_support:'国标/JIS 牌号；EMT/UL 需核实',
+  certs:['国标/JIS 镀锌牌号'],
+  address:'安徽省马鞍山市',
+  contact:{phone:'（马钢销售/客服，需核实）', email:'', website:'https://www.magang.com.cn', other:'Mysteel 有马钢热镀锌卷出厂价'},
+  fit_reason:'华东、无花纯锌表面质量好、家电级基板，适配先镀后焊；MOQ/窄带定制门槛需谈。',
+  note:'B 路线备选。无花镀锌表面细腻是加分。250g 高克重与 Preece 需按合同确认。',
+  sources:['https://www.magang.com.cn/'] },
+{ id:'shagang', tbl:2, route:'B', cn:'江苏沙钢集团', en:'Jiangsu Shagang Group', loc:'张家港，江苏（华东）',
+  fit:'medium', confidence:'partial',
+  process:'全国最大民营钢企，冷轧 + 热镀锌配套',
+  coating:'GI Z60–Z275；高克重需确认',
+  tube_range:'带钢；SPCC/DX51D 基板，适窄带焊管路线', surface:'EMT 级 Z250 与硫酸铜表现需索样验证',
+  capacity:'民营机制对定制批量相对灵活',
+  logistics:'张家港（江苏，离无锡近）', env_risk:'华东，低',
+  cert_support:'国标/JIS 牌号；EMT/UL 需核实',
+  certs:['国标/JIS 镀锌牌号'],
+  address:'江苏省张家港市锦丰镇沿江',
+  contact:{phone:'（沙钢销售，需核实）', email:'', website:'http://www.sha-steel.com', other:'海鑫钢网/中钢在线有沙钢镀锌挂牌'},
+  fit_reason:'华东近沪、冷轧+镀锌一体、民营机制对定制批量相对灵活；EMT 级镀层质量需实测确认。',
+  note:'B 路线备选，地理近（张家港离无锡近）。EMT 级镀层/克重需索样。',
+  sources:['http://www.sha-steel.com/jtgk_1/jtjj/index.shtml'] },
+// 路线 C：锌铝镁 ZAM 卷
+{ id:'rizhao', tbl:2, route:'C', cn:'日照钢铁控股集团', en:'Rizhao Steel Holding Group', loc:'日照，山东（华东偏北）',
+  fit:'medium', confidence:'verified',
+  process:'热基无花镀锌 + 锌铝镁板（GI/ZAM 双路线可谈）',
+  coating:'热基镀锌 60–920 g/m²（双面）——可精确锁 250g；另供 ZAM',
+  tube_range:'带钢/板；克重可调范围最灵活', surface:'热基无花表面适合成形/焊管',
+  capacity:'大厂；EMT 级适配与最小批量需询销售',
+  logistics:'山东日照（华东偏北，物流尚可）', env_risk:'山东，冬季限产风险中等，需确认',
+  cert_support:'VDA 239-100 等体系；EMT/UL 需核实',
+  certs:['VDA 239-100'],
+  address:'山东省日照市滨海路600号',
+  contact:{phone:'0633-6188060（总机）；0633-6180666（国内销售）；0633-6187610（外贸）', email:'', website:'https://www.rizhaosteel.com', other:'官网镀锌产品页明确克重/厚度'},
+  fit_reason:'克重覆盖 60–920 最灵活、可精确锁 250g，且 GI 与 ZAM 双路线可谈；地址/销售电话官网可核实；华东偏北物流尚可。',
+  note:'克重灵活是最大优势（精确锁 250g）。GI/ZAM 双路线可谈。EMT 级适配与最小批量需询销售。',
+  sources:['https://www.rizhaosteel.com/dxcp/index.htm','https://www.rizhaosteel.com/djcl/index.htm'] },
+{ id:'shougang_jt', tbl:2, route:'C', cn:'首钢京唐钢铁', en:'Shougang Jingtang United Iron & Steel', loc:'唐山曹妃甸，河北（华北）',
+  fit:'medium', confidence:'verified',
+  process:'汽车板级锌铝镁(ZM)全系列 + 纯锌 GI',
+  coating:'ZAM 80–800 g/m²（双面），可覆盖 250g；纯锌 GI 全系',
+  tube_range:'厚 0.8–6.0mm、宽 900–1500mm；国内唯一供 3.0mm+ 结构用 ZAM', surface:'ZAM 表面好、耐蚀强',
+  capacity:'汽车板体系 MOQ 高',
+  logistics:'河北唐山（华北，离无锡远）', env_risk:'⚠️ 华北——冬季错峰/双碳限产风险显著高',
+  cert_support:'IATF/汽车板体系；EMT/UL 需核实',
+  certs:['IATF','汽车板体系'],
+  address:'河北省唐山市曹妃甸工业区（063200）',
+  contact:{phone:'0315-8873381（冷系销售）；0315-8873379（热系）；0315-8870066（值班）', email:'', website:'https://www.sgjtsteel.com', other:'传真 0315-8870067'},
+  fit_reason:'锌铝镁全系列+高克重+官方明确联系方式，C 路线首选之一；短板华北(非华东)、汽车板 MOQ 高、手弯开裂需验证。',
+  note:'C 路线核心供应商，联系方式已核实。⚠️ ZAM 手弯 90° 开裂风险——需选低铝牌号做弯曲试验；UL 是否接受 ZAM 镀层化学须核标准。华北冬季限产是时效风险。',
+  sources:['https://www.sgjtsteel.com/sgjt_lxwm/sgjt_lxfs/cindex1.html'] },
+{ id:'jisco', tbl:2, route:'C', cn:'酒钢宏兴（JISCO）', en:'Jiuquan Iron & Steel (JISCO)', loc:'嘉峪关，甘肃（西北）',
+  fit:'medium', confidence:'partial',
+  process:'国内锌铝镁先行者，冷/热、厚/薄全规格覆盖',
+  coating:'ZAM 全规格，克重按需（含高克重可覆盖 250g）',
+  tube_range:'国内唯一冷/热、厚/薄全规格 ZAM；便于选薄规格+合适克重', surface:'ZAM 表面好、耐蚀高',
+  capacity:'ZAM 年产能 120 万吨+，累计供货超 200 万吨',
+  logistics:'⚠️ 甘肃嘉峪关（西北——离华东很远，物流成本高）', env_risk:'西北，限产风险中',
+  cert_support:'牵头 ISO 锌铝镁国际标准、国标 GB；EMT/UL 需核实',
+  certs:['ISO 锌铝镁标准（牵头）','GB 热浸镀锌铝镁'],
+  address:'甘肃省嘉峪关市',
+  contact:{phone:'（酒钢宏兴销售，需核实）', email:'', website:'https://www.jiugang.com', other:'锌铝镁牌号/克重经营销或授权代理'},
+  fit_reason:'国内 ZAM 产能与规格覆盖最全、技术最成熟，C 路线核心供应商；短板是西北远离华东、物流成本高。',
+  note:'ZAM 技术最成熟、全规格。物流是硬伤（西北）。手弯开裂需选成形性牌号验证；UL 是否接受 ZAM 镀层化学须核标准。',
+  sources:['http://www.csteelnews.com/xwzx/jrrd/202307/t20230717_77123.html','https://www.jiugang.com/article/about/jisco/'] }
+];
+/*__END_DATA__*/
+
+const FIT={high:'高',medium:'中',low:'低'};
+const CONF={verified:'已核实',partial:'部分',unverified:'待核'};
+const T1GRP={
+  1:{cls:'g1',label:'类型 1 · 做热镀 + 自产 EMT 管（一站式）',desc:'工艺最对口，薄壁实绩天然具备；需确认接不接来料代镀'},
+  2:{cls:'g2',label:'类型 2 · 只做热镀(代镀) + 具薄壁/薄件工艺基础',desc:'纯代镀最契合"无锡焊管送镀"；EMT 薄壁实绩待打样验证'},
+  3:{cls:'g3',label:'类型 3 · 只做热镀 + 无薄壁经验（结构件/厚壁为主）',desc:'需说服其为薄壁 EMT 开专线，风险较高'},
+};
+const T2GRP={
+  B:{cls:'gB',label:'路线 B · 带钢连续热镀锌 CGL（先镀再焊，Alex 主张最优）',desc:'买镀锌带做焊管；⚠️ 焊缝过硫酸铜为核心未决风险'},
+  C:{cls:'gC',label:'路线 C · 锌铝镁 ZAM 卷（替代镀层）',desc:'表面/耐蚀好；⚠️ UL 是否认 ZAM + 手弯开裂待验证'},
+};
+function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function badges(c){return `<span class="badge fit-${c.fit}">${FIT[c.fit]}</span> <span class="conf conf-${c.confidence}">${CONF[c.confidence]}</span>`;}
+function contactCell(c){
+  const ct=c.contact||{}; const cu=c.confidence!=='verified'?'<span class="cu2">待核</span>':'';
+  let s='';
+  if(ct.phone) s+=`<div>${esc(ct.phone)}${/需核实|登录|未直接/.test(ct.phone)?'':cu}</div>`;
+  if(ct.website) s+=`<div><a href="${esc(ct.website.split('（')[0])}" target="_blank">${esc(ct.website)}</a></div>`;
+  if(!s) s='<span style="color:var(--muted)">需企查查/电话核实</span>';
+  s+='<div class="rowlink">点行看全部 ▸</div>';
+  return s;
+}
+function stats(){
+  const t1=D.filter(c=>c.tbl===1), t2=D.filter(c=>c.tbl===2);
+  const high=D.filter(c=>c.fit==='high').length, ver=D.filter(c=>c.confidence==='verified').length;
+  document.getElementById('stats').innerHTML=`
+    <div class="stat"><div class="n">${t1.length}</div><div class="l">热镀锌厂(路线A)</div></div>
+    <div class="stat"><div class="n">${t2.length}</div><div class="l">替代路线材料</div></div>
+    <div class="stat"><div class="n">${high}</div><div class="l">高匹配</div></div>
+    <div class="stat"><div class="n">${ver}</div><div class="l">已核实</div></div>`;
+}
+function rowHTML(c,cols){
+  return `<tr class="row" onclick="openModal('${c.id}')">
+    <td><div class="cn2">${esc(c.cn)}</div><div class="en2">${esc(c.en||'')}</div><div class="lo2">📍 ${esc(c.loc)}</div><div class="rowbadges">${badges(c)}</div></td>
+    ${cols.map(fn=>`<td>${fn(c)}</td>`).join('')}
+  </tr>`;
+}
+function buildT1(){
+  const cols=[
+    c=>`${esc(c.process)}<br><span class="coat">锌层：${esc(c.coating)}</span>`,
+    c=>`${esc(c.tube_range)}<br><span style="color:var(--muted)">${esc(c.surface)}</span>`,
+    c=>esc(c.cert_support),
+    c=>`${esc(c.logistics)}<br><span style="color:var(--muted)">${esc(c.env_risk)}</span>`,
+    c=>contactCell(c),
+  ];
+  let html='';
+  [1,2,3].forEach(t=>{
+    const g=T1GRP[t], rows=D.filter(c=>c.tbl===1&&c.type===t);
+    if(!rows.length)return;
+    html+=`<tr class="grp ${g.cls}"><td colspan="6">${g.label}<span class="desc">${g.desc}</span></td></tr>`;
+    html+=rows.map(c=>rowHTML(c,cols)).join('');
+  });
+  document.getElementById('tb1').innerHTML=html;
+}
+function buildT2(){
+  const cols=[
+    c=>`<span class="coat">${esc(c.coating)}</span>`,
+    c=>`${esc(c.tube_range)}<br><span style="color:var(--muted)">${esc(c.surface)}</span>`,
+    c=>`${esc(c.cert_support)}<br><span style="color:var(--muted)">产能/起订：${esc(c.capacity)}</span>`,
+    c=>`${esc(c.logistics)}<br><span style="color:var(--muted)">${esc(c.env_risk)}</span>`,
+    c=>contactCell(c),
+  ];
+  let html='';
+  ['B','C'].forEach(r=>{
+    const g=T2GRP[r], rows=D.filter(c=>c.tbl===2&&c.route===r);
+    if(!rows.length)return;
+    html+=`<tr class="grp ${g.cls}"><td colspan="6">${g.label}<span class="desc">${g.desc}</span></td></tr>`;
+    html+=rows.map(c=>rowHTML(c,cols)).join('');
+  });
+  document.getElementById('tb2').innerHTML=html;
+}
+function openModal(id){
+  const c=D.find(x=>x.id===id); if(!c)return;
+  const grp = c.tbl===1 ? T1GRP[c.type].label : T2GRP[c.route].label;
+  const ct=c.contact||{};
+  const cline=[['电话',ct.phone],['邮箱',ct.email],['其他',ct.other]].filter(x=>x[1]).map(x=>`<div>${x[0]}：${esc(x[1])}</div>`).join('')
+    + (ct.website?`<div>网址：<a href="${esc(ct.website.split('（')[0])}" target="_blank">${esc(ct.website)}</a></div>`:'')
+    + (c.address?`<div>地址：${esc(c.address)}${c.confidence!=='verified'?'<span class="cu2">待核实</span>':''}</div>`:'');
+  document.getElementById('mbody').innerHTML=`
+    <h2>${esc(c.cn)}</h2>
+    <div class="m-en">${esc(c.en||'')} · ${esc(c.loc)} · ${badges(c)}</div>
+    <div class="m-sec"><h3>分类 / 匹配理由</h3><div class="kv">
+      <div class="k">类别</div><div>${esc(grp)}</div>
+      <div class="k">匹配判断</div><div>${esc(c.fit_reason)}</div></div></div>
+    <div class="m-sec"><h3>能力参数</h3><div class="kv">
+      <div class="k">工艺</div><div>${esc(c.process)}</div>
+      <div class="k">锌层克重</div><div>${esc(c.coating)}</div>
+      <div class="k">规格/薄壁</div><div>${esc(c.tube_range)}</div>
+      <div class="k">表面</div><div>${esc(c.surface)}</div>
+      <div class="k">产能/起订</div><div>${esc(c.capacity)}</div>
+      <div class="k">物流</div><div>${esc(c.logistics)}</div>
+      <div class="k">环保限产</div><div>${esc(c.env_risk)}</div>
+      <div class="k">认证支持</div><div>${esc(c.cert_support)}</div>
+      ${c.certs&&c.certs.length?`<div class="k">资质</div><div>${c.certs.map(esc).join(' · ')}</div>`:''}
+    </div></div>
+    <div class="m-sec"><h3>联系方式 ${c.confidence!=='verified'?'<span style="color:var(--warn);font-size:10px">（未电话核实）</span>':''}</h3><div class="contact-line">${cline||'—'}</div></div>
+    ${c.note?`<div class="m-sec"><h3>调研备注</h3><div class="note-box">${esc(c.note)}</div></div>`:''}
+    ${c.sources&&c.sources.length?`<div class="m-sec"><h3>来源</h3><div class="m-links">${c.sources.map((s,i)=>`<a class="m-link" href="${esc(s)}" target="_blank">🔗 来源${i+1}</a>`).join('')}</div></div>`:''}`;
+  document.getElementById('overlay').classList.add('open');
+}
+function closeModal(e,force){ if(force||(e&&e.target.id==='overlay')) document.getElementById('overlay').classList.remove('open'); }
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal(null,true);});
+
+document.getElementById('copyBtn').addEventListener('click',function(){
+  const L=['# 国内 EMT 热镀锌厂候选（2026-07-02）\n','> 需求：焊后 250g 热镀薄壁 EMT，非友发，表面光滑，江苏/南方优先，UL797/CSA。联系方式未电话核实，锌价/环保为时效敏感项。\n'];
+  L.push('\n## 表1 · 热镀锌厂（路线 A 焊后热镀）');
+  [1,2,3].forEach(t=>{ L.push(`\n### ${T1GRP[t].label}`);
+    D.filter(c=>c.tbl===1&&c.type===t).forEach(c=>{ L.push(`- **${c.cn}**（${c.loc}）· ${FIT[c.fit]}匹配·${CONF[c.confidence]}`);
+      L.push(`  - 工艺/克重：${c.process}｜${c.coating}`);
+      L.push(`  - 薄壁/表面：${c.tube_range}｜${c.surface}`);
+      L.push(`  - 认证：${c.cert_support}｜物流/环保：${c.logistics}｜${c.env_risk}`);
+      L.push(`  - 联系(待核)：${[c.contact.phone,c.contact.email,c.contact.website,c.contact.other].filter(Boolean).join(' / ')||'—'}｜地址：${c.address||'—'}`);
+      L.push(`  - 判断：${c.fit_reason}`); }); });
+  L.push('\n## 表2 · 替代路线材料（B 带钢先镀 / C 锌铝镁）');
+  ['B','C'].forEach(r=>{ L.push(`\n### ${T2GRP[r].label}`);
+    D.filter(c=>c.tbl===2&&c.route===r).forEach(c=>{ L.push(`- **${c.cn}**（${c.loc}）· ${FIT[c.fit]}匹配·${CONF[c.confidence]}`);
+      L.push(`  - 克重：${c.coating}｜基板/适配：${c.tube_range}｜${c.surface}`);
+      L.push(`  - 认证/起订：${c.cert_support}｜${c.capacity}｜物流/环保：${c.logistics}｜${c.env_risk}`);
+      L.push(`  - 联系(待核)：${[c.contact.phone,c.contact.email,c.contact.website,c.contact.other].filter(Boolean).join(' / ')||'—'}`);
+      L.push(`  - 判断：${c.fit_reason}`); }); });
+  L.push('\n## 排除\n- 友发（全系，老板明确"不要友发"）；天津大邱庄集群（锌渣锌瘤多）。');
+  navigator.clipboard.writeText(L.join('\n')).then(()=>{this.textContent='✅ 已复制';setTimeout(()=>this.textContent='📋 复制两表摘要 (markdown)',2000);});
+});
+
+stats(); buildT1(); buildT2();
+</script>
+</body>
+</html>
