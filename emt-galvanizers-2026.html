@@ -147,7 +147,6 @@ tbody tr.row:hover{background:var(--hover);}
       <tr><th style="width:150px">路线</th><th>做法</th><th>优 / 难点</th></tr>
       <tr><td style="color:var(--t2);font-weight:600">A. 焊后热镀/吹镀<br><span style="font-size:10px;color:var(--muted)">→ 表1 热镀锌厂</span></td><td>光亮焊管去焊缝 → 送镀锌厂对成品管 250g 热镀</td><td><span class="pro">焊缝也镀住、防锈完整、量产易切换</span>；<span class="con">薄壁受热不均易形变、批镀易挂锌瘤 → 需离心甩锌/吹气控光洁</span></td></tr>
       <tr><td style="color:var(--strip);font-weight:600">B. 带钢先镀再焊<br><span style="font-size:10px;color:var(--muted)">→ 表2 带钢 CGL</span></td><td>SPCC 带钢连续热镀 250g → 镀锌带做焊管（Alex 主张最优）</td><td><span class="pro">表面/公差最好、连续镀层均匀、省一个受检厂</span>；<span class="q">焊缝烧损 → 能否过硫酸铜？带钢起订 200–300t？（未决）</span></td></tr>
-      <tr><td style="color:var(--zam);font-weight:600">C. 锌铝镁卷<br><span style="font-size:10px;color:var(--muted)">→ 表2 ZAM</span></td><td>锌铝镁镀层卷做焊管，替代普通镀锌</td><td><span class="pro">表面好看、能过硫酸铜、公差达标</span>；<span class="q">UL/CSA 是否接受该镀层化学？手弯 90° 是否开裂？（待测）</span></td></tr>
     </table>
   </div>
 
@@ -173,11 +172,12 @@ tbody tr.row:hover{background:var(--hover);}
           <li>反应性钢的<b>厚脆镀层易分层</b>，对薄壁 EMT 的"手弯不开裂+表面光滑"是直接杀手 → 应选<b>非反应性低碳钢</b>（SPCC 属低碳低 Si，与线程选材一致）<sup>[6]</sup></li>
         </ul>
       </div>
-      <div class="box"><h4 style="color:var(--good)">③ 建议方向</h4>
+      <div class="box"><h4 style="color:var(--good)">③ 建议策略（每条均有标准依据）</h4>
         <ul>
-          <li><b>优先"连续/预镀"替代"批量热浸"</b>：EMT 主流正是 ERW 焊后<b>在线镀锌</b>/<b>预镀锌带</b>——连续线单件热历史短、张力受控，不经历批量浸-提的分时应力释放；这从机理解释了"薄壁批镀良率不行"，也是<b>路线 B（带钢先镀再焊）</b>能规避变形的原因<sup>[2][3]</sup> <span style="color:var(--warn)">⚠️ 属机理推断+行业实践，未见"连续 vs 批量对薄壁管变形"的直接量化文献，需打样验证</span></li>
-          <li><b>若坚持焊后批量热镀</b>：控浸入/提出角度与速度、单次浸镀、对称装夹、<b>离心甩锌</b>控薄件多余锌<sup>[3][4]</sup></li>
-          <li><b>材质控制</b>：向钢厂索化学成分，确保硅当量落在良好区间；厚薄一致、低残余应力<sup>[3][6]</sup></li>
+          <li><b>策略1 · 选非反应性钢</b>：控制基板硅当量落在良好区间（Si&lt;0.04% 或 0.15–0.22%、P&lt;0.04%）→ 镀层薄而匀、附着好、不易分层<sup>[6]</sup></li>
+          <li><b>策略2 · 抗变形的批镀工艺</b>：厚薄一致、对称件、避免强力装夹焊接、控制浸入/提出、单次浸镀、必要时临时支撑<sup>[3][4]</sup></li>
+          <li><b>策略3 · 按标准判据验收</b>：EMT 以 UL797/CSA + <b>硫酸铜 Preece（外壁4次）</b> + ASTM A239 最薄点验收，不以 g/m² 克重为准<sup>[6]</sup></li>
+          <li><b>策略4 · 变更工艺路线</b>：整支薄壁成品管批量浸镀正是 ASTM A384 所述变形机制的适用场景；改走「带钢成形前镀锌 → 再制管」(路线 B) 不经历成品件的批量浸-提热循环<sup>[4]</sup> <span style="color:var(--warn)">（机理成立，量产良率仍需打样验证）</span></li>
         </ul>
       </div>
     </div>
@@ -207,7 +207,7 @@ tbody tr.row:hover{background:var(--hover);}
       <b>镀锌厂要不要进 UL 范围？</b>按 UL Follow-Up Service「Manufacturing Location」定义（凡产品被 processed/finished 的地点都算受检点）——
       <b style="color:var(--warn)">焊后热镀 = 独立镀锌厂是第 2 个受检厂 → 焊管厂+镀锌厂两厂都进 UL 范围</b>；
       <b style="color:var(--good)">带钢先镀 = 镀锌是来料，省一个受检厂</b>（但焊缝过硫酸铜是技术难关）。
-      认证「省事度」：预镀 › 250g焊后热镀 › <b style="color:var(--zam)">ZAM/有机涂层（最贵，且无公开证据 UL 已认 ZAM 作 EMT 镀层）</b>。
+      认证「省事度」：预镀 › 250g焊后热镀 › ZAM/有机涂层（最贵，且<b style="color:var(--warn)">无公开证据 UL 已认 ZAM 作 EMT 镀层</b>）——<b>本次面向 cUL 认证，故不列 ZAM 路线</b>。
     </div>
     <div class="split">
       <div class="box spec"><h4>① 商业口径</h4><b>250 g/m² 锌层克重</b>（对标伊莱克曼/友发 250g）——寿命目标，非 UL 门槛，单/双面待核。</div>
@@ -243,8 +243,8 @@ tbody tr.row:hover{background:var(--hover);}
 
   <!-- 表2 替代路线 -->
   <div class="sec">
-    <h2>🧱 表 2 · 替代路线材料供应商（带钢先镀 / 锌铝镁 · 路线 B/C）</h2>
-    <div class="sub">这类是<b>买镀锌卷/带钢</b>而非"送管代镀"——对应 Alex 主张的<b style="color:var(--strip)">路线 B（带钢先镀再焊）</b>与<b style="color:var(--zam)">路线 C（锌铝镁）</b>。<b style="color:var(--strip)">B</b>=SPCC 冷轧带钢连续热镀 250g 再焊；<b style="color:var(--zam)">C</b>=锌铝镁镀层卷。</div>
+    <h2>🧱 表 2 · 带钢先镀再焊材料供应商（路线 B）</h2>
+    <div class="sub">这类是<b>买镀锌带钢/卷</b>而非"送管代镀"——对应 Alex 主张的<b style="color:var(--strip)">路线 B</b>：SPCC 冷轧带钢<b>连续热镀 250g</b> → 再制焊管。表面/公差最好、行政上省一个受检厂；<b>焊缝过硫酸铜</b>是核心待验证点。</div>
     <div class="tbl-wrap">
       <table class="ctbl">
         <thead><tr>
@@ -472,17 +472,17 @@ const D = [
   sources:['https://m.alu.cn/aluTrade/1867058.html'] },
 { id:'baosteel', tbl:2, route:'B', cn:'宝钢股份', en:'Baoshan Iron & Steel (Baosteel)', loc:'上海宝山（华东）',
   fit:'medium', confidence:'partial',
-  process:'冷轧-GI-镀铝锌-锌铝镁全覆盖（可一厂同报 GI 与 ZAM）',
-  coating:'GI Z80–Z275+ 可按需高克重；ZM/XM 双面约 90–275 g/m²',
+  process:'冷轧 + 连续热镀锌(GI 纯锌)，家电级基板',
+  coating:'GI Z80–Z275+，可按需高克重（覆盖 250g）',
   tube_range:'带钢；家电级 GI(SPCC 基板)最适先镀后焊', surface:'纯净度/表面/公差业界标杆',
   capacity:'龙头大厂；窄料 MOQ 高，200–300t 窄料多需经认证加工中心聚单',
   logistics:'上海（华东，离无锡近）', env_risk:'华东，低',
   cert_support:'Q/BQB、ISO/IATF；EMT/UL 需核实',
   certs:['Q/BQB','ISO/IATF'],
   address:'上海市宝山区富锦路885号',
-  contact:{phone:'（宝钢销售/客服热线，需核实）', email:'', website:'http://esales.baosteel.com', other:'esales 平台有冷轧/汽车板/锌铝镁手册'},
-  fit_reason:'基板/表面/克重全满足，且能同时报 GI 与 ZAM 两条路线；短板是大厂 MOQ 与窄带排产门槛。',
-  note:'能一厂覆盖 B(GI) 与 C(ZAM)。BaoZM 低铝(Zn-1~2%Al-1~2%Mg)成形性优于 GI、焊点/切边耐蚀约 2–5 倍，对"手弯"痛点正面——但 UL 是否接受 ZAM 镀层化学须核标准。',
+  contact:{phone:'（宝钢销售/客服热线，需核实）', email:'', website:'http://esales.baosteel.com', other:'esales 平台有冷轧/涂镀手册'},
+  fit_reason:'基板/表面/克重全满足，纯锌 GI 带钢质量业界标杆；短板是大厂 MOQ 与窄带排产门槛，小批量 Z250 需聚单。',
+  note:'B 路线备选，纯净度/表面/公差是其强项。Z250 高克重与最小排产量需向宝钢销售确认。',
   sources:['http://esales.baosteel.com/portal/download/manual/ColdRolled.pdf'] },
 { id:'masteel', tbl:2, route:'B', cn:'马钢（马鞍山钢铁）', en:'Maanshan Iron & Steel', loc:'马鞍山，安徽（华东）',
   fit:'medium', confidence:'partial',
@@ -511,50 +511,7 @@ const D = [
   contact:{phone:'（沙钢销售，需核实）', email:'', website:'http://www.sha-steel.com', other:'海鑫钢网/中钢在线有沙钢镀锌挂牌'},
   fit_reason:'华东近沪、冷轧+镀锌一体、民营机制对定制批量相对灵活；EMT 级镀层质量需实测确认。',
   note:'B 路线备选，地理近（张家港离无锡近）。EMT 级镀层/克重需索样。',
-  sources:['http://www.sha-steel.com/jtgk_1/jtjj/index.shtml'] },
-// 路线 C：锌铝镁 ZAM 卷
-{ id:'rizhao', tbl:2, route:'C', cn:'日照钢铁控股集团', en:'Rizhao Steel Holding Group', loc:'日照，山东（华东偏北）',
-  fit:'medium', confidence:'verified',
-  process:'热基无花镀锌 + 锌铝镁板（GI/ZAM 双路线可谈）',
-  coating:'热基镀锌 60–920 g/m²（双面）——可精确锁 250g；另供 ZAM',
-  tube_range:'带钢/板；克重可调范围最灵活', surface:'热基无花表面适合成形/焊管',
-  capacity:'大厂；EMT 级适配与最小批量需询销售',
-  logistics:'山东日照（华东偏北，物流尚可）', env_risk:'山东，冬季限产风险中等，需确认',
-  cert_support:'VDA 239-100 等体系；EMT/UL 需核实',
-  certs:['VDA 239-100'],
-  address:'山东省日照市滨海路600号',
-  contact:{phone:'0633-6188060（总机）；0633-6180666（国内销售）；0633-6187610（外贸）', email:'', website:'https://www.rizhaosteel.com', other:'官网镀锌产品页明确克重/厚度'},
-  fit_reason:'克重覆盖 60–920 最灵活、可精确锁 250g，且 GI 与 ZAM 双路线可谈；地址/销售电话官网可核实；华东偏北物流尚可。',
-  note:'克重灵活是最大优势（精确锁 250g）。GI/ZAM 双路线可谈。EMT 级适配与最小批量需询销售。',
-  sources:['https://www.rizhaosteel.com/dxcp/index.htm','https://www.rizhaosteel.com/djcl/index.htm'] },
-{ id:'shougang_jt', tbl:2, route:'C', cn:'首钢京唐钢铁', en:'Shougang Jingtang United Iron & Steel', loc:'唐山曹妃甸，河北（华北）',
-  fit:'medium', confidence:'verified',
-  process:'汽车板级锌铝镁(ZM)全系列 + 纯锌 GI',
-  coating:'ZAM 80–800 g/m²（双面），可覆盖 250g；纯锌 GI 全系',
-  tube_range:'厚 0.8–6.0mm、宽 900–1500mm；国内唯一供 3.0mm+ 结构用 ZAM', surface:'ZAM 表面好、耐蚀强',
-  capacity:'汽车板体系 MOQ 高',
-  logistics:'河北唐山（华北，离无锡远）', env_risk:'⚠️ 华北——冬季错峰/双碳限产风险显著高',
-  cert_support:'IATF/汽车板体系；EMT/UL 需核实',
-  certs:['IATF','汽车板体系'],
-  address:'河北省唐山市曹妃甸工业区（063200）',
-  contact:{phone:'0315-8873381（冷系销售）；0315-8873379（热系）；0315-8870066（值班）', email:'', website:'https://www.sgjtsteel.com', other:'传真 0315-8870067'},
-  fit_reason:'锌铝镁全系列+高克重+官方明确联系方式，C 路线首选之一；短板华北(非华东)、汽车板 MOQ 高、手弯开裂需验证。',
-  note:'C 路线核心供应商，联系方式已核实。⚠️ ZAM 手弯 90° 开裂风险——需选低铝牌号做弯曲试验；UL 是否接受 ZAM 镀层化学须核标准。华北冬季限产是时效风险。',
-  sources:['https://www.sgjtsteel.com/sgjt_lxwm/sgjt_lxfs/cindex1.html'] },
-{ id:'jisco', tbl:2, route:'C', cn:'酒钢宏兴（JISCO）', en:'Jiuquan Iron & Steel (JISCO)', loc:'嘉峪关，甘肃（西北）',
-  fit:'medium', confidence:'partial',
-  process:'国内锌铝镁先行者，冷/热、厚/薄全规格覆盖',
-  coating:'ZAM 全规格，克重按需（含高克重可覆盖 250g）',
-  tube_range:'国内唯一冷/热、厚/薄全规格 ZAM；便于选薄规格+合适克重', surface:'ZAM 表面好、耐蚀高',
-  capacity:'ZAM 年产能 120 万吨+，累计供货超 200 万吨',
-  logistics:'⚠️ 甘肃嘉峪关（西北——离华东很远，物流成本高）', env_risk:'西北，限产风险中',
-  cert_support:'牵头 ISO 锌铝镁国际标准、国标 GB；EMT/UL 需核实',
-  certs:['ISO 锌铝镁标准（牵头）','GB 热浸镀锌铝镁'],
-  address:'甘肃省嘉峪关市',
-  contact:{phone:'（酒钢宏兴销售，需核实）', email:'', website:'https://www.jiugang.com', other:'锌铝镁牌号/克重经营销或授权代理'},
-  fit_reason:'国内 ZAM 产能与规格覆盖最全、技术最成熟，C 路线核心供应商；短板是西北远离华东、物流成本高。',
-  note:'ZAM 技术最成熟、全规格。物流是硬伤（西北）。手弯开裂需选成形性牌号验证；UL 是否接受 ZAM 镀层化学须核标准。',
-  sources:['http://www.csteelnews.com/xwzx/jrrd/202307/t20230717_77123.html','https://www.jiugang.com/article/about/jisco/'] }
+  sources:['http://www.sha-steel.com/jtgk_1/jtjj/index.shtml'] }
 ];
 /*__END_DATA__*/
 
@@ -566,8 +523,7 @@ const T1GRP={
   3:{cls:'g3',label:'类型 3 · 只做热镀 + 无薄壁经验（结构件/厚壁为主）',desc:'需说服其为薄壁 EMT 开专线，风险较高'},
 };
 const T2GRP={
-  B:{cls:'gB',label:'路线 B · 带钢连续热镀锌 CGL（先镀再焊，Alex 主张最优）',desc:'买镀锌带做焊管；⚠️ 焊缝过硫酸铜为核心未决风险'},
-  C:{cls:'gC',label:'路线 C · 锌铝镁 ZAM 卷（替代镀层）',desc:'表面/耐蚀好；⚠️ UL 是否认 ZAM + 手弯开裂待验证'},
+  B:{cls:'gB',label:'路线 B · 带钢连续热镀锌 CGL（先镀再焊，Alex 主张最优）',desc:'买镀锌带钢做焊管；⚠️ 焊缝过硫酸铜为核心未决风险'},
 };
 function esc(s){return (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
 function badges(c){return `<span class="badge fit-${c.fit}">${FIT[c.fit]}</span> <span class="conf conf-${c.confidence}">${CONF[c.confidence]}</span>`;}
@@ -621,7 +577,7 @@ function buildT2(){
     c=>contactCell(c),
   ];
   let html='';
-  ['B','C'].forEach(r=>{
+  ['B'].forEach(r=>{
     const g=T2GRP[r], rows=D.filter(c=>c.tbl===2&&c.route===r);
     if(!rows.length)return;
     html+=`<tr class="grp ${g.cls}"><td colspan="6">${g.label}<span class="desc">${g.desc}</span></td></tr>`;
@@ -671,8 +627,8 @@ document.getElementById('copyBtn').addEventListener('click',function(){
       L.push(`  - 认证：${c.cert_support}｜物流/环保：${c.logistics}｜${c.env_risk}`);
       L.push(`  - 联系(待核)：${[c.contact.phone,c.contact.email,c.contact.website,c.contact.other].filter(Boolean).join(' / ')||'—'}｜地址：${c.address||'—'}`);
       L.push(`  - 判断：${c.fit_reason}`); }); });
-  L.push('\n## 表2 · 替代路线材料（B 带钢先镀 / C 锌铝镁）');
-  ['B','C'].forEach(r=>{ L.push(`\n### ${T2GRP[r].label}`);
+  L.push('\n## 表2 · 带钢先镀再焊材料（路线 B）');
+  ['B'].forEach(r=>{ L.push(`\n### ${T2GRP[r].label}`);
     D.filter(c=>c.tbl===2&&c.route===r).forEach(c=>{ L.push(`- **${c.cn}**（${c.loc}）· ${FIT[c.fit]}匹配·${CONF[c.confidence]}`);
       L.push(`  - 克重：${c.coating}｜基板/适配：${c.tube_range}｜${c.surface}`);
       L.push(`  - 认证/起订：${c.cert_support}｜${c.capacity}｜物流/环保：${c.logistics}｜${c.env_risk}`);
