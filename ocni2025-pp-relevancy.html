@@ -333,7 +333,7 @@
         <button type="button" class="chip t-mid" data-filter="mid" title="Fit tier B — possible buyer or influence" aria-pressed="false" title="Fit tier B — possible buyer or influence">Mid <span class="ct" id="ct-mid">0</span></button>
         <button type="button" class="chip t-low" data-filter="low" title="Fit tier C — weak/no clear PP tubular fit" aria-pressed="false" title="Fit tier C — weak/no clear PP tubular fit">Low <span class="ct" id="ct-low">0</span></button>
         <span class="sep" aria-hidden="true"></span>
-        <button type="button" class="chip t-comp" data-filter="competitors" title="Peer suppliers — monitor/partner only" aria-pressed="false" title="Peer suppliers — monitor/partner only">Competitor <span class="ct" id="ct-comp">0</span></button>
+        <button type="button" class="chip t-comp" data-filter="competitors" title="Peer sellers — possible distributors; map their customers as PP targets" aria-pressed="false" title="Peer sellers — possible distributors; map their customers as PP targets">Competitor <span class="ct" id="ct-comp">0</span></button>
         <button type="button" class="chip t-verify" data-filter="verify" title="Unclear role/buying posture — verify first" aria-pressed="false" title="Unclear role/buying posture — verify first">Verify <span class="ct" id="ct-verify">0</span></button>
       </div>
 
@@ -344,7 +344,7 @@
           <div><dt class="k-high">High</dt><dd>Fit tier <b>A</b> — direct buyer / fabricator of pipe or tubulars Precise Pipe can supply. Primary outreach targets.</dd></div>
           <div><dt class="k-mid">Mid</dt><dd>Fit tier <b>B</b> — possible buyer or strong influence (specifier, channel, project pull). Worth meeting if time allows.</dd></div>
           <div><dt class="k-low">Low</dt><dd>Fit tier <b>C</b> — weak or no clear tubular demand for PP. Keep for context; do not prioritize.</dd></div>
-          <div><dt class="k-comp">Competitor</dt><dd>Peer pipe / metals suppliers (tier <b>D</b> or competitor flag). Monitor / partner only — not a sell-to list.</dd></div>
+          <div><dt class="k-comp">Competitor</dt><dd>Peer pipe / metals sellers (tier <b>D</b> or competitor flag). Treat as possible <b>distributors</b> we can supply — and map <b>who their customers are</b> (those end buyers are also PP targets).</dd></div>
           <div><dt class="k-verify">Verify</dt><dd>Role or buying posture unclear (R12 / needs verification). Confirm business facts before outreach.</dd></div>
         </dl>
       </aside>
@@ -1006,7 +1006,7 @@ function renderL2() {
 /* ---- L3 dialog ---- */
 function emptyOppHtml(m) {
   if (m.is_competitor || m.opportunity_state === "competitor") {
-    return `<p>Competitor — monitor / partner only.</p>`;
+    return `<p>Competitor / channel — possible distributor we can supply. Map their customers: those end buyers are also PP targets.</p>`;
   }
   if (m.opportunity_state === "verify" || m.needs_verification) {
     return `<p>Verify first — role and buy posture unknown.</p>`;
