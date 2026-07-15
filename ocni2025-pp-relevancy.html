@@ -1082,6 +1082,17 @@ function openL3(id, pushHash) {
     ? blockHtml("methods", "Contact methods", `<ul class="method-list">${methods.join("")}</ul>`)
     : "";
 
+  /* Peer channel intel */
+  let peerHtml = "";
+  if (m.is_competitor || p.channel_play || (p.known_customers && p.known_customers.length)) {
+    const bits = [];
+    if (p.channel_play) bits.push(`<p><strong>Channel play:</strong> ${esc(p.channel_play)}</p>`);
+    if (p.known_customers && p.known_customers.length) {
+      bits.push(`<p><strong>Their customers / end markets</strong> (also PP targets):</p><ul>${p.known_customers.slice(0, 8).map(x => `<li>${esc(x)}</li>`).join("")}</ul>`);
+    }
+    if (bits.length) peerHtml = blockHtml("peer", "Peer seller intel", bits.join(""));
+  }
+
   /* Products / Services */
   let productsHtml = "";
   let servicesHtml = "";
@@ -1123,7 +1134,7 @@ function openL3(id, pushHash) {
   if (m.needs_verification) footParts.push("Needs verification");
 
   document.getElementById("dlg-body").innerHTML =
-    introHtml + productsHtml + servicesHtml + buyHtml + ppHtml
+    introHtml + peerHtml + productsHtml + servicesHtml + buyHtml + ppHtml
     + addrHtml + contactsHtml + methodsHtml
     + (footParts.length ? `<div class="dlg-foot">${footParts.join(" · ")}</div>` : "");
 
