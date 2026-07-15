@@ -450,6 +450,15 @@ const READY_LABEL = {
   watch: "Watch trigger",
   none: "None"
 };
+const BAND_LABEL = {
+  all: "All",
+  high: "High",
+  mid: "Mid",
+  low: "Low",
+  competitors: "Peer sellers",
+  verify: "Verify"
+};
+
 const STATE_LABEL = {
   active: "Active opportunity",
   partner: "Partner",
@@ -815,10 +824,12 @@ function goL1(opts) {
 function enterRole(roleId, opts = {}) {
   state.scroll.l1 = window.scrollY;
   state.role_id = roleId;
-  state.l2_band = opts.band != null ? opts.band : "all";
-  state.l2_query = opts.query != null ? opts.query : "";
-  state.low_open = false;
-  state.comp_open = false;
+  // Inherit L1 priority filter so Peer sellers / High / etc. carry into L2
+  const band = opts.band != null ? opts.band : (state.filters.band || "all");
+  state.l2_band = band;
+  state.l2_query = opts.query != null ? opts.query : (state.query || "");
+  state.low_open = band === "low";
+  state.comp_open = band === "competitors";
   state.scroll.l2 = 0;
   if (opts.focus_id) state.focus_id = opts.focus_id;
   showL2(true);
@@ -853,29 +864,37 @@ function renderL1() {
   function cardHtml(role) {
     const total = totalByRole[role.id] || 0;
     const match = matchedByRole[role.id] || 0;
-    const dim = filtering && match === 0;
+    // When a priority filter is on, hide roles with zero matches
+    if (filtering && match === 0) return "";
     const countLine = filtering
       ? `${match} matched / ${total} total`
       : `${total} members`;
     const bandBits = [];
-    const inRole = MEMBERS.filter(m => m.primary_role === role.id);
+    const inRole = filtering
+      ? matched.filter(m => m.primary_role === role.id)
+      : MEMBERS.filter(m => m.primary_role === role.id);
     const c = inventoryCounts(inRole);
     if (c.high) bandBits.push(`${c.high} high`);
     if (c.mid) bandBits.push(`${c.mid} mid`);
-    return `<button type="button" class="role-card${dim ? " dim" : ""}" role="listitem"
-      data-role="${role.id}" ${dim ? "aria-disabled=\"true\"" : ""}>
+    if (filtering && state.filters.band === "competitors" && c.comp) bandBits.push(`${c.comp} peer`);
+    if (filtering && state.filters.band === "verify" && c.verify) bandBits.push(`${c.verify} verify`);
+    return `<button type="button" class="role-card" role="listitem" data-role="${role.id}">
       <div class="rl">${esc(role.label)}</div>
       <div class="rc">${esc(countLine)}</div>
       <div class="rb">${esc(bandBits.join(" · ") || "—")}</div>
     </button>`;
   }
 
-  document.getElementById("primary-roles").innerHTML =
-    ROLES.filter(r => r.section === "primary").map(cardHtml).join("");
-  document.getElementById("support-roles").innerHTML =
-    ROLES.filter(r => r.section === "support").map(cardHtml).join("");
-  document.getElementById("verify-roles").innerHTML =
-    ROLES.filter(r => r.section === "verify").map(cardHtml).join("");
+  function fillRoleGrid(elId, section) {
+    const html = ROLES.filter(r => r.section === section).map(cardHtml).join("");
+    const el = document.getElementById(elId);
+    el.innerHTML = html || (filtering
+      ? `<div class="empty" style="grid-column:1/-1">No roles with matches for this filter.</div>`
+      : "");
+  }
+  fillRoleGrid("primary-roles", "primary");
+  fillRoleGrid("support-roles", "support");
+  fillRoleGrid("verify-roles", "verify");
 
   document.getElementById("support-roles").classList.toggle("hidden", !state.r11_open);
   document.getElementById("toggle-r11").setAttribute("aria-expanded", state.r11_open ? "true" : "false");
@@ -966,7 +985,7 @@ function renderL2() {
   if (!list.length) {
     const msg = state.l2_query
       ? `No matches for “${esc(state.l2_query)}” in this role.`
-      : `No ${esc(state.l2_band === "all" ? "" : state.l2_band + "-")}targets in ${esc(role.label)}.`;
+      : `No ${esc(state.l2_band === "all" ? "" : (BAND_LABEL[state.l2_band] || state.l2_band) + " ")}targets in ${esc(role.label)}.`;
     root.innerHTML = `<div class="empty">${msg}
       <div class="acts">
         <button type="button" class="btn" data-act="clear-l2">Clear filters</button>
